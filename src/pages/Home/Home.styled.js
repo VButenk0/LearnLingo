@@ -26,29 +26,27 @@ export const InfoWrp = styled.div`
 export const InfoTitle = styled.h1`
   width: 548px;
 
-  font-family: Roboto;
+  font-family: "Roboto Medium";
   font-size: 48px;
-  font-weight: 500;
   line-height: 1.17;
   letter-spacing: -0.96px;
 
   padding-bottom: 32px;
 
   span {
+    font-family: "Roboto Regular";
     font-style: italic;
-    font-weight: 400;
 
     border-radius: 8px;
     background: #c1bdf2;
 
-    padding: 0 3px;
+    padding: 0 5px;
   }
 `;
 
 export const InfoText = styled.p`
   width: 471px;
-  font-size: 16px;
-  font-weight: 400;
+  font-family: "Roboto Regular";
   line-height: 1.4;
   letter-spacing: -0.32px;
   padding-bottom: 64px;
@@ -58,11 +56,19 @@ export const InfoButton = styled.button`
   width: fit-content;
   padding: 16px 88px;
 
+  color: var(--white-text);
+  background-color: var(--accent-color);
   border-radius: 12px;
-  background-color: #9a9de0;
 
   font-size: 18px;
-  font-weight: 700;
+  font-family: "Roboto Bold";
+
+  transition: all 0.5s;
+
+  &:hover {
+    color: var(--primary-text);
+    background-color: var(--accent-hover);
+  }
 `;
 
 export const ImgWrp = styled.div`
@@ -99,11 +105,9 @@ export const TutorStatsWrp = styled.div`
   display: flex;
   gap: 100px;
 
-  width: 100%;
-
   padding: 40px 122px;
 
-  border: 1.5px dashed #9b9ae0;
+  border: 3px dashed #9b9ae0;
   border-radius: 30px;
 `;
 
@@ -113,8 +117,8 @@ export const OneStatWrp = styled.div`
 `;
 
 export const StatNumber = styled.p`
+  font-family: "Roboto Medium";
   font-size: 28px;
-  font-weight: 500;
   line-height: 1.14;
   letter-spacing: -0.56px;
 `;
@@ -123,8 +127,12 @@ export const StatDescr = styled.p`
   width: 96px;
 
   color: rgba(18, 20, 23, 0.7);
+  font-family: "Roboto Regular";
   font-size: 14px;
-  font-weight: 400;
   line-height: 1.29;
   letter-spacing: -0.28px;
+
+  &.shorter {
+    width: 74px;
+  }
 `;

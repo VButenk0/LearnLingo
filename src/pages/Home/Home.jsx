@@ -42,19 +42,19 @@ const Home = () => {
       <TutorStatsWrp>
         <OneStatWrp>
           <StatNumber>32,000 +</StatNumber>
-          <p>Experienced tutors</p>
+          <StatDescr>Experienced tutors</StatDescr>
         </OneStatWrp>
         <OneStatWrp>
           <StatNumber>300,000 +</StatNumber>
-          <p>5-star tutor reviews</p>
+          <StatDescr>5-star tutor reviews</StatDescr>
         </OneStatWrp>
         <OneStatWrp>
           <StatNumber>120 +</StatNumber>
-          <p>Subjects taught</p>
+          <StatDescr className="shorter">Subjects taught</StatDescr>
         </OneStatWrp>
         <OneStatWrp>
           <StatNumber>200 +</StatNumber>
-          <StatDescr>Tutor nationalities</StatDescr>
+          <StatDescr className="shorter">Tutor nationalities</StatDescr>
         </OneStatWrp>
       </TutorStatsWrp>
     </Container>
