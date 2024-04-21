@@ -27,7 +27,6 @@ export const NavWrpr = styled.div`
   gap: 28px;
 `;
 export const StyledNavLink = styled(NavLink)`
-  font-family: "Roboto Regular", sans-serif;
   font-size: 16px;
   line-height: 1.25;
   transition: all 0.3s;
@@ -44,22 +43,31 @@ export const AuthWrpr = styled.div`
   gap: 16px;
 `;
 
-export const LogInBtn = styled.div`
+export const LogInBtn = styled.button`
   display: flex;
   align-items: center;
   gap: 8px;
 
-  cursor: pointer;
+  font-family: "Roboto Bold", sans-serif;
+  line-height: 1.25;
 
   use {
-    stroke: red;
+    stroke: var(--accent-color);
   }
 `;
 
 export const RegisterBtn = styled.button`
   padding: 14px 39px;
+  background-color: var(--accent-color);
+  border-radius: 12px;
 
   color: var(--white-text);
-  background-color: var(--primary-text);
-  border-radius: 12px;
+  font-family: "Roboto Bold", sans-serif;
+  line-height: 1.25;
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--primary-text);
+    background-color: var(--accent-hover);
+  }
 `;

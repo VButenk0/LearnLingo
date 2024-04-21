@@ -25,8 +25,8 @@ const Header = () => {
         </NavWrpr>
         <AuthWrpr>
           <LogInBtn>
-            <svg width={16} height={16}>
-              <use href={sprite + "#icon-online"}></use>
+            <svg width={16} height={16} fill="none">
+              <use href={sprite + "#icon-log-in"}></use>
             </svg>
             Log In
           </LogInBtn>

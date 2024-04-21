@@ -46,7 +46,6 @@ export const InfoTitle = styled.h1`
 
 export const InfoText = styled.p`
   width: 471px;
-  font-family: "Roboto Regular";
   line-height: 1.4;
   letter-spacing: -0.32px;
   padding-bottom: 64px;
@@ -63,7 +62,7 @@ export const InfoButton = styled.button`
   font-size: 18px;
   font-family: "Roboto Bold";
 
-  transition: all 0.5s;
+  transition: all 0.3s;
 
   &:hover {
     color: var(--primary-text);
@@ -80,7 +79,7 @@ export const ImgWrp = styled.div`
   height: 100%;
 
   border-radius: 30px;
-  background-color: #c1bdf2;
+  background-color: var(--accent-bg);
 `;
 
 export const GodImg = styled.img`
@@ -103,11 +102,13 @@ export const AppleImg = styled.img`
 
 export const TutorStatsWrp = styled.div`
   display: flex;
+  align-items: center;
   gap: 100px;
 
   padding: 40px 122px;
 
-  border: 3px dashed #9b9ae0;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%239B9AE0FF' stroke-width='1.5' stroke-dasharray='15%2c 15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  background-position: center;
   border-radius: 30px;
 `;
 
@@ -126,8 +127,7 @@ export const StatNumber = styled.p`
 export const StatDescr = styled.p`
   width: 96px;
 
-  color: rgba(18, 20, 23, 0.7);
-  font-family: "Roboto Regular";
+  color: var(--descr-text);
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.28px;
