@@ -1,10 +1,13 @@
 :root {
   --primary-text: #121417;
-  --descr-text: rgba(18, 20, 23, 0.7);
+  --gray-text: #8a8a89;
+  --translucent-text: rgba(18, 20, 23, 0.7);
   --white-text: #ffffff;
   --accent-color: #5350f4;
   --accent-hover: #868bff;
+  --border-color: #9b9ae0;
+  --translucent-border: rgba(18, 20, 23, 0.2);
   --bcgclr: #ffffff;
+  --second-bgclr: #fbfbfb;
   --accent-bg: #c1bdf2;
-  --dash-color: #9b9ae0;
 }

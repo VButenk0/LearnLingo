@@ -31,7 +31,7 @@ const Home = () => {
             Elevate your language proficiency to new heights by connecting with
             highly qualified and experienced tutors.
           </InfoText>
-          <InfoButton>Get started</InfoButton>
+          <InfoButton to={"/teachers"}>Get started</InfoButton>
         </InfoWrp>
         <ImgWrp>
           <GodImg src={god} alt="God" width={450} />

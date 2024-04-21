@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainWrp = styled.div`
@@ -51,7 +52,7 @@ export const InfoText = styled.p`
   padding-bottom: 64px;
 `;
 
-export const InfoButton = styled.button`
+export const InfoButton = styled(Link)`
   width: fit-content;
   padding: 16px 88px;
 
@@ -127,7 +128,7 @@ export const StatNumber = styled.p`
 export const StatDescr = styled.p`
   width: 96px;
 
-  color: var(--descr-text);
+  color: var(--translucent-text);
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.28px;

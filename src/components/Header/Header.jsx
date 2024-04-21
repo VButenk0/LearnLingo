@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <Container>
       <HeaderWrpr>
-        <LogoWrpr>
+        <LogoWrpr to={"/"}>
           <img src={Logo} alt="Logo" />
           <p>LearnLingo</p>
         </LogoWrpr>

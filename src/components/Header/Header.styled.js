@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderWrpr = styled.div`
@@ -8,16 +8,29 @@ export const HeaderWrpr = styled.div`
   padding: 20px 64px;
 `;
 
-export const LogoWrpr = styled.div`
+export const LogoWrpr = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+
+  padding: 5px;
+
+  border-radius: 12px;
+
+  cursor: pointer;
 
   p {
     font-family: "Roboto Medium", sans-serif;
     font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.4px;
+  }
+
+  &:hover {
+    border-width: 2px;
+    border-top-color: #338af3;
+    border-bottom-color: #ffda44;
+    border-style: solid none;
   }
 `;
 
@@ -30,6 +43,11 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 16px;
   line-height: 1.25;
   transition: all 0.3s;
+
+  &:hover {
+    color: var(--accent-color);
+    font-weight: 700;
+  }
 
   &.active {
     box-sizing: content-box;
@@ -48,11 +66,26 @@ export const LogInBtn = styled.button`
   align-items: center;
   gap: 8px;
 
+  padding: 10px 2px;
+
   font-family: "Roboto Bold", sans-serif;
   line-height: 1.25;
 
+  transition: color 0.3s;
+
   use {
     stroke: var(--accent-color);
+  }
+
+  &:hover {
+    color: var(--accent-color);
+    border-width: 3px;
+    border-style: solid none;
+    border-color: var(--border-color);
+
+    use {
+      stroke: var(--primary-text);
+    }
   }
 `;
 
