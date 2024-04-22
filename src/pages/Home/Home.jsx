@@ -3,11 +3,11 @@ import god from "../../images/Memoji Boys 2-7.png";
 import laptop from "../../images/Union.png";
 import apple from "../../images/apple.png";
 import {
-  InfoText,
-  InfoWrp,
+  WelcomeText,
+  WelcomeWrp,
   MainWrp,
-  InfoTitle,
-  InfoButton,
+  WelcomeTitle,
+  WelcomeButton,
   ImgWrp,
   LaptopImg,
   AppleImg,
@@ -22,17 +22,17 @@ const Home = () => {
   return (
     <Container>
       <MainWrp>
-        <InfoWrp>
-          <InfoTitle>
+        <WelcomeWrp>
+          <WelcomeTitle>
             Unlock your potential with the best <span>language</span> tutors
-          </InfoTitle>
-          <InfoText>
+          </WelcomeTitle>
+          <WelcomeText>
             Embark on an Exciting Language Journey with Expert Language Tutors:
             Elevate your language proficiency to new heights by connecting with
             highly qualified and experienced tutors.
-          </InfoText>
-          <InfoButton to={"/teachers"}>Get started</InfoButton>
-        </InfoWrp>
+          </WelcomeText>
+          <WelcomeButton to={"/teachers"}>Get started</WelcomeButton>
+        </WelcomeWrp>
         <ImgWrp>
           <GodImg src={god} alt="God" width={450} />
           <LaptopImg src={laptop} alt="Laptop" />

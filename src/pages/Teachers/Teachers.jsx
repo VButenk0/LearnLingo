@@ -1039,12 +1039,12 @@ const Teachers = () => {
   return (
     <Container>
       <div>
-        <label htmlFor=""></label>
-        <select name="" id=""></select>
-        <label htmlFor=""></label>
-        <select name="" id=""></select>
-        <label htmlFor=""></label>
-        <select name="" id=""></select>
+        <label htmlFor="languages"></label>
+        <select name="languages" id="languages"></select>
+        <label htmlFor="level"></label>
+        <select name="level" id="level"></select>
+        <label htmlFor="price"></label>
+        <select name="price" id="price"></select>
       </div>
       <CardsWrapper>
         {teachers.map(

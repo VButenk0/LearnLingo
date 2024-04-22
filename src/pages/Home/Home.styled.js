@@ -10,7 +10,7 @@ export const MainWrp = styled.div`
   padding-bottom: 24px;
 `;
 
-export const InfoWrp = styled.div`
+export const WelcomeWrp = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -20,11 +20,11 @@ export const InfoWrp = styled.div`
   width: 720px;
   height: 100%;
   border-radius: 30px;
-  background-color: #f8f8f8;
+  background-color: var(--second-bgclr);
   text-align: left;
 `;
 
-export const InfoTitle = styled.h1`
+export const WelcomeTitle = styled.h1`
   width: 548px;
 
   font-family: "Roboto Medium";
@@ -39,20 +39,20 @@ export const InfoTitle = styled.h1`
     font-style: italic;
 
     border-radius: 8px;
-    background: #c1bdf2;
+    background: var(--accent-bg);
 
     padding: 0 5px;
   }
 `;
 
-export const InfoText = styled.p`
+export const WelcomeText = styled.p`
   width: 471px;
   line-height: 1.4;
   letter-spacing: -0.32px;
   padding-bottom: 64px;
 `;
 
-export const InfoButton = styled(Link)`
+export const WelcomeButton = styled(Link)`
   width: fit-content;
   padding: 16px 88px;
 

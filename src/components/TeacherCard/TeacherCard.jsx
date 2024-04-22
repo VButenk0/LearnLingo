@@ -3,6 +3,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import sprite from "../../assets/sprite.svg";
 import {
   BookIcon,
+  BookingBtn,
   FullName,
   GrayText,
   IconStatWrpr,
@@ -11,6 +12,10 @@ import {
   LevelWrpr,
   LevelsWrpr,
   NotFavIcon,
+  ReadMoreBtn,
+  ReviewComment,
+  ReviewRate,
+  ReviewsWrpr,
   ShortInfoWrpr,
   StarIcon,
   StatText,
@@ -42,7 +47,7 @@ const TeacherCard = ({
       <ImgWrapper>
         <TeacherPhoto
           src={avatar_url}
-          alt={name + surname}
+          alt={name + " " + surname}
           width={96}
           height={96}
         />
@@ -96,29 +101,33 @@ const TeacherCard = ({
             </p>
           </ShortInfoWrpr>
           {!isReadingMore ? (
-            <button onClick={() => setIsReadingMore(true)}>Read more</button>
+            <ReadMoreBtn onClick={() => setIsReadingMore(true)}>
+              Read more
+            </ReadMoreBtn>
           ) : (
             <p>{experience}</p>
           )}
         </div>
         {isReadingMore && (
-          <div>
+          <ReviewsWrpr>
             {reviews.map(({ reviewer_name, reviewer_rating, comment }) => (
               <div key={nanoid()}>
                 <div>
                   <img src="" alt="" />
-                  <p>{reviewer_name}</p>
                   <div>
-                    <svg width={16} height={16}>
-                      <use href={sprite + "#icon-star"}></use>
-                    </svg>
-                    <p>{reviewer_rating}</p>
+                    <GrayText>{reviewer_name}</GrayText>
+                    <ReviewRate>
+                      <StarIcon width={16} height={16}>
+                        <use href={sprite + "#icon-star"}></use>
+                      </StarIcon>
+                      <p>{reviewer_rating}.0</p>
+                    </ReviewRate>
                   </div>
                 </div>
-                <p>{comment}</p>
+                <ReviewComment>{comment}</ReviewComment>
               </div>
             ))}
-          </div>
+          </ReviewsWrpr>
         )}
         <LevelsWrpr>
           {levels.map((level) => (
@@ -127,7 +136,7 @@ const TeacherCard = ({
             </LevelWrpr>
           ))}
         </LevelsWrpr>
-        {isReadingMore && <button>Book trial lesson</button>}
+        {isReadingMore && <BookingBtn>Book trial lesson</BookingBtn>}
       </InfoWrapper>
     </TeacherCardWrpr>
   );

@@ -28,8 +28,8 @@ export const LogoWrpr = styled(Link)`
 
   &:hover {
     border-width: 2px;
-    border-top-color: #338af3;
-    border-bottom-color: #ffda44;
+    border-top-color: var(--top-border-flag);
+    border-bottom-color: var(--bottom-border-flag);
     border-style: solid none;
   }
 `;

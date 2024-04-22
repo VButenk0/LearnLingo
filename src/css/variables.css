@@ -8,6 +8,11 @@
   --border-color: #9b9ae0;
   --translucent-border: rgba(18, 20, 23, 0.2);
   --bcgclr: #ffffff;
-  --second-bgclr: #fbfbfb;
+  --second-bgclr: #f8f8f8;
   --accent-bg: #c1bdf2;
+
+  --price-color: #38cd3e;
+  --star-color: #ffc531;
+  --top-border-flag: #338af3;
+  --bottom-border-flag: #ffda44;
 }

@@ -49,10 +49,12 @@ export const TopPart = styled.div`
 `;
 
 export const GrayText = styled.p`
-  color: #8a8a89;
-  font-family: "Roboto Medium", sans-serif;
-  line-height: 1.5;
-  padding-bottom: 8px;
+  color: var(--gray-text);
+  font-family: "Roboto Medium";
+
+  &:first-of-type {
+    padding-bottom: 8px;
+  }
 `;
 
 export const FullName = styled.p`
@@ -78,7 +80,7 @@ export const StatText = styled.p`
   line-height: 1.5;
 
   span {
-    color: #38cd3e;
+    color: var(--price-color);
   }
 `;
 
@@ -94,7 +96,7 @@ export const BookIcon = styled.svg`
 `;
 
 export const StarIcon = styled.svg`
-  fill: #ffc531;
+  fill: var(--star-color);
 `;
 
 export const NotFavIcon = styled.svg`
@@ -123,6 +125,7 @@ export const ShortInfoWrpr = styled.div`
 
 export const ReadMoreBtn = styled.button`
   font-family: "Roboto Medium";
+  font-size: 16px;
   line-height: 1.5;
   text-decoration: underline;
 `;
@@ -147,5 +150,53 @@ export const LevelWrpr = styled.div`
     color: var(--white-text);
     background-color: var(--accent-color);
     border: none;
+  }
+`;
+
+export const ReviewsWrpr = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+
+export const ReviewerWrpr = styled.div`
+  display: flex;
+  gap: 12px;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+`;
+
+export const ReviewRate = styled.div`
+  display: flex;
+  gap: 8px;
+  p {
+    font-family: "Roboto Medium";
+    font-size: 14px;
+    line-height: 1.3;
+  }
+`;
+
+export const ReviewComment = styled.p`
+  font-family: "Roboto Medium";
+`;
+
+export const BookingBtn = styled.button`
+  width: fit-content;
+  background-color: var(--accent-color);
+  border-radius: 12px;
+  padding: 16px 48px;
+
+  color: var(--white-text);
+  font-family: "Roboto Bold";
+  font-size: 18px;
+  line-height: 1.6;
+
+  &:hover {
+    color: var(--primary-text);
+    background-color: var(--accent-hover);
   }
 `;
