@@ -3,6 +3,8 @@ import Home from "./pages/Home/Home";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Teachers from "./pages/Teachers/Teachers";
 import Favorites from "./pages/Favorites/Favorites";
+import PublicRoute from "./routesConfig/PublicRoute";
+import PrivateRoute from "./routesConfig/PrivateRoute";
 
 function App() {
   return (
@@ -12,25 +14,25 @@ function App() {
           <Route
             index
             element={
-              // <PublicRoute>
-              <Home />
-              // </PublicRoute>
+              <PublicRoute>
+                <Home />
+              </PublicRoute>
             }
           />
           <Route
             path="/teachers"
             element={
-              // <PublicRoute>
-              <Teachers />
-              // </PublicRoute>
+              <PublicRoute>
+                <Teachers />
+              </PublicRoute>
             }
           />
           <Route
             path="/favorites"
             element={
-              // <PrivateRoute>
-              <Favorites />
-              // </PrivateRoute>
+              <PrivateRoute>
+                <Favorites />
+              </PrivateRoute>
             }
           />
         </Route>

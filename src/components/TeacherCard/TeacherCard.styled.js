@@ -55,6 +55,10 @@ export const GrayText = styled.p`
   &:first-of-type {
     padding-bottom: 8px;
   }
+
+  &.review {
+    padding-bottom: 2px;
+  }
 `;
 
 export const FullName = styled.p`
@@ -102,6 +106,11 @@ export const StarIcon = styled.svg`
 export const NotFavIcon = styled.svg`
   fill: none;
   stroke: var(--primary-text);
+`;
+
+export const SeparatorIcon = styled.svg`
+  stroke-width: 1px;
+  stroke: var(--translucent20-text);
 `;
 
 export const ShortInfoWrpr = styled.div`
@@ -161,13 +170,14 @@ export const ReviewsWrpr = styled.div`
 
 export const ReviewerWrpr = styled.div`
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
 
-  img {
+  /* img {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-  }
+  } */
 `;
 
 export const ReviewRate = styled.div`

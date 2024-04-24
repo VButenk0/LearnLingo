@@ -10,8 +10,26 @@ import {
 } from "./Header.styled";
 import Container from "../Container/Container";
 import sprite from "../../assets/sprite.svg";
+import { useDispatch } from "react-redux";
+import {
+  changeLogInModal,
+  changeModalOpen,
+  changeRegisterModal,
+} from "../../redux/modals/modalsSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const onLogInClick = () => {
+    dispatch(changeModalOpen(true));
+    dispatch(changeLogInModal(true));
+  };
+
+  const onRegisterClick = () => {
+    dispatch(changeModalOpen(true));
+    dispatch(changeRegisterModal(true));
+  };
+
   return (
     <Container>
       <HeaderWrpr>
@@ -24,13 +42,13 @@ const Header = () => {
           <StyledNavLink to="/teachers">Teachers</StyledNavLink>
         </NavWrpr>
         <AuthWrpr>
-          <LogInBtn>
+          <LogInBtn onClick={onLogInClick}>
             <svg width={16} height={16} fill="none">
               <use href={sprite + "#icon-log-in"}></use>
             </svg>
             Log In
           </LogInBtn>
-          <RegisterBtn>Registration</RegisterBtn>
+          <RegisterBtn onClick={onRegisterClick}>Registration</RegisterBtn>
         </AuthWrpr>
       </HeaderWrpr>
     </Container>

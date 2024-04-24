@@ -15,7 +15,9 @@ import {
   ReadMoreBtn,
   ReviewComment,
   ReviewRate,
+  ReviewerWrpr,
   ReviewsWrpr,
+  SeparatorIcon,
   ShortInfoWrpr,
   StarIcon,
   StatText,
@@ -69,16 +71,22 @@ const TeacherCard = ({
                 </BookIcon>
                 <StatText>Lessons online</StatText>
               </IconStatWrpr>
-              <p>|</p>
+              <SeparatorIcon width={2} height={16} fill="none">
+                <use href={sprite + "#icon-separator"}></use>
+              </SeparatorIcon>
               <StatText>Lessons done: {lessons_done}</StatText>
-              <p>|</p>
+              <SeparatorIcon width={2} height={16} fill="none">
+                <use href={sprite + "#icon-separator"}></use>
+              </SeparatorIcon>
               <IconStatWrpr>
                 <StarIcon width={16} height={16}>
                   <use href={sprite + "#icon-star"}></use>
                 </StarIcon>
                 <StatText>Rating: {rating}</StatText>
               </IconStatWrpr>
-              <p>|</p>
+              <SeparatorIcon width={2} height={16} fill="none">
+                <use href={sprite + "#icon-separator"}></use>
+              </SeparatorIcon>
               <StatText>
                 Price / 1 hour: <span>{price_per_hour}$</span>
               </StatText>
@@ -112,18 +120,18 @@ const TeacherCard = ({
           <ReviewsWrpr>
             {reviews.map(({ reviewer_name, reviewer_rating, comment }) => (
               <div key={nanoid()}>
-                <div>
-                  <img src="" alt="" />
-                  <div>
-                    <GrayText>{reviewer_name}</GrayText>
-                    <ReviewRate>
-                      <StarIcon width={16} height={16}>
-                        <use href={sprite + "#icon-star"}></use>
-                      </StarIcon>
-                      <p>{reviewer_rating}.0</p>
-                    </ReviewRate>
-                  </div>
-                </div>
+                <ReviewerWrpr>
+                  {/* <img src="" alt={reviewer_name}'s Avatar /> */}
+                  {/* <div> */}
+                  <GrayText className="review">{reviewer_name}</GrayText>
+                  <ReviewRate>
+                    <StarIcon width={16} height={16}>
+                      <use href={sprite + "#icon-star"}></use>
+                    </StarIcon>
+                    <p>{reviewer_rating}.0</p>
+                  </ReviewRate>
+                  {/* </div> */}
+                </ReviewerWrpr>
                 <ReviewComment>{comment}</ReviewComment>
               </div>
             ))}

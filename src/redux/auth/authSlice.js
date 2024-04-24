@@ -15,9 +15,9 @@ export const authSlice = createSlice({
     isError: null,
   },
 
-  extraReducers: (builder) => {
-    builder.addCase();
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase();
+  // },
 });
 
 export const authReducer = authSlice.reducer;
