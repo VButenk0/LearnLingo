@@ -1,10 +1,21 @@
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+// import { useState } from "react";
+import {
+  Formik,
+  // Form, Field, ErrorMessage
+} from "formik";
 import * as Yup from "yup";
-import { EyeWrpr } from "./RegistrModal.styled";
+import {
+  // EyeWrpr,
+  FormStyled,
+  InputStyled,
+  InputsWrpr,
+  SubmitBtn,
+  TitleWrapper,
+} from "./RegistrModal.styled";
+import { TextField } from "@mui/material";
 
-const RegistrModal = ({ onClose }) => {
-  const [showPassword, setShowPassword] = useState(false);
+const RegistrModal = () => {
+  // const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
     username: "",
@@ -26,21 +37,33 @@ const RegistrModal = ({ onClose }) => {
     setSubmitting(false);
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword(!showPassword);
+  // };
 
   return (
-    <div>
-      <h2>Registration</h2>
+    <>
+      <TitleWrapper>
+        <h2>Registration</h2>
+        <p>
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information
+        </p>
+      </TitleWrapper>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {(formik) => (
-          <Form>
-            <div>
+          <FormStyled>
+            <InputsWrpr>
+              <InputStyled id="username" label="Name" />
+              <InputStyled id="email" label="Email" />
+              <InputStyled id="password" label="Password" type="password" />
+            </InputsWrpr>
+            {/* <div>
               <label htmlFor="username">Username</label>
               <Field type="text" id="username" name="username" />
               <ErrorMessage name="username" />
@@ -65,15 +88,14 @@ const RegistrModal = ({ onClose }) => {
                 <div />
               </EyeWrpr>
               <ErrorMessage name="password" />
-            </div>
-            <button type="submit" disabled={formik.isSubmitting}>
-              Register
-            </button>
-          </Form>
+            </div> */}
+            <SubmitBtn type="submit" disabled={formik.isSubmitting}>
+              Sign Up
+            </SubmitBtn>
+          </FormStyled>
         )}
       </Formik>
-      <button onClick={onClose}>Close</button>
-    </div>
+    </>
   );
 };
 

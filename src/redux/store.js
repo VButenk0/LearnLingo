@@ -1,3 +1,4 @@
+import { configureStore } from "@reduxjs/toolkit";
 // import {
 //   persistStore,
 //   persistReducer,
@@ -12,7 +13,6 @@
 import { authReducer } from "./auth/authSlice";
 import { dataReducer } from "./data/dataSlice";
 import { modalsReducer } from "./modals/modalsSlice";
-import { configureStore } from "@reduxjs/toolkit";
 
 // const authPersistConfig = {
 //   key: "auth",

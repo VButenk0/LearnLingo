@@ -10,24 +10,29 @@ import {
 } from "./Header.styled";
 import Container from "../Container/Container";
 import sprite from "../../assets/sprite.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changeLogInModal,
   changeModalOpen,
   changeRegisterModal,
 } from "../../redux/modals/modalsSlice";
+import Modal from "../Modal/Modal";
+import { selectIsModalOpen } from "../../redux/selectors";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const modalIsOpen = useSelector(selectIsModalOpen);
 
   const onLogInClick = () => {
     dispatch(changeModalOpen(true));
     dispatch(changeLogInModal(true));
+    console.log("Натиск на логін");
   };
 
   const onRegisterClick = () => {
     dispatch(changeModalOpen(true));
     dispatch(changeRegisterModal(true));
+    console.log("Натиск на реєстрацію");
   };
 
   return (
@@ -51,6 +56,7 @@ const Header = () => {
           <RegisterBtn onClick={onRegisterClick}>Registration</RegisterBtn>
         </AuthWrpr>
       </HeaderWrpr>
+      {modalIsOpen && <Modal />}
     </Container>
   );
 };

@@ -24,6 +24,7 @@ export const ModalStyled = styled.div`
   z-index: 2000;
   border-radius: 30px;
   background-color: var(--bcgclr);
+  padding: 64px;
 `;
 
 export const BtnClose = styled.button`

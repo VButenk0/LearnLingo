@@ -1,13 +1,13 @@
 import { useCallback, useEffect } from "react";
 import ReactDom from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Fade } from "@mui/material";
+import Fade from "@mui/material/Fade";
 import sprite from "../../assets/sprite.svg";
 import {
-  selectBookingModal,
+  // selectBookingModal,
   selectIsModalOpen,
   selectLogInModal,
-  selectLogoutModal,
+  // selectLogoutModal,
   selectRegisterModal,
 } from "../../redux/selectors";
 import LogInModal from "../LogInModal/LogInModal";
@@ -25,9 +25,11 @@ const Modal = () => {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsModalOpen);
   const logInModal = useSelector(selectLogInModal);
+  console.log(logInModal);
   const registrModal = useSelector(selectRegisterModal);
-  const logoutModal = useSelector(selectLogoutModal);
-  const bookingModal = useSelector(selectBookingModal);
+  console.log(registrModal);
+  // const logoutModal = useSelector(selectLogoutModal);
+  // const bookingModal = useSelector(selectBookingModal);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -70,8 +72,8 @@ const Modal = () => {
             <ModalStyled>
               {logInModal && <LogInModal />}
               {registrModal && <RegistrModal />}
-              {logoutModal && <></>}
-              {bookingModal && <></>}
+              {/* {logoutModal && <></>}
+              {bookingModal && <></>} */}
 
               <BtnClose type="button" onClick={closeModal}>
                 <SvgBtnClose>
