@@ -18,6 +18,8 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalStyled = styled.div`
+  box-sizing: border-box;
+  width: 566px;
   height: auto;
   overflow-y: auto;
   max-height: 90vh;

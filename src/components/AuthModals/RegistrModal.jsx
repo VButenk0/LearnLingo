@@ -11,8 +11,7 @@ import {
   InputsWrpr,
   SubmitBtn,
   TitleWrapper,
-} from "./RegistrModal.styled";
-import { TextField } from "@mui/material";
+} from "./AuthModals.styled";
 
 const RegistrModal = () => {
   // const [showPassword, setShowPassword] = useState(false);

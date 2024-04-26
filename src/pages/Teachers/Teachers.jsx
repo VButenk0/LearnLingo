@@ -1051,11 +1051,6 @@ const Teachers = () => {
     return Array.from(new Set(allLevels));
   };
 
-  // const getPrices = () => {
-  //   const allPrices = teachers.flatMap((teacher) => teacher.price_per_hour);
-  //   return Array.from(new Set(allPrices));
-  // };
-
   const getPrices = () => {
     const prices = [];
     for (let i = 10; i <= 50; i += 10) {

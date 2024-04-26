@@ -26,13 +26,11 @@ const Header = () => {
   const onLogInClick = () => {
     dispatch(changeModalOpen(true));
     dispatch(changeLogInModal(true));
-    console.log("Натиск на логін");
   };
 
   const onRegisterClick = () => {
     dispatch(changeModalOpen(true));
     dispatch(changeRegisterModal(true));
-    console.log("Натиск на реєстрацію");
   };
 
   return (

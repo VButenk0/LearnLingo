@@ -27,6 +27,13 @@ import {
   TeacherStatsWrpr,
   TopPart,
 } from "./TeacherCard.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsModalOpen } from "../../redux/selectors";
+import {
+  changeBookingModal,
+  changeModalOpen,
+} from "../../redux/modals/modalsSlice";
+import Modal from "../Modal/Modal";
 
 const TeacherCard = ({
   name,
@@ -42,7 +49,14 @@ const TeacherCard = ({
   conditions,
   experience,
 }) => {
+  const dispatch = useDispatch();
+  const modalIsOpen = useSelector(selectIsModalOpen);
   const [isReadingMore, setIsReadingMore] = useState(false);
+
+  const onBookingClick = () => {
+    dispatch(changeModalOpen(true));
+    dispatch(changeBookingModal(true));
+  };
 
   return (
     <TeacherCardWrpr>
@@ -144,8 +158,11 @@ const TeacherCard = ({
             </LevelWrpr>
           ))}
         </LevelsWrpr>
-        {isReadingMore && <BookingBtn>Book trial lesson</BookingBtn>}
+        {isReadingMore && (
+          <BookingBtn onClick={onBookingClick}>Book trial lesson</BookingBtn>
+        )}
       </InfoWrapper>
+      {modalIsOpen && <Modal />}
     </TeacherCardWrpr>
   );
 };

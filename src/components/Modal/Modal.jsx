@@ -10,8 +10,8 @@ import {
   // selectLogoutModal,
   selectRegisterModal,
 } from "../../redux/selectors";
-import LogInModal from "../LogInModal/LogInModal";
-import RegistrModal from "../RegistrModal/RegistrModal";
+import LogInModal from "../AuthModals/LogInModal";
+import RegistrModal from "../AuthModals/RegistrModal";
 import { closeModals } from "../../redux/modals/modalsSlice";
 import {
   BtnClose,
