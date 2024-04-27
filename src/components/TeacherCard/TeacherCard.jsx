@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import sprite from "../../assets/sprite.svg";
+import { changeSelectedTeacher } from "../../redux/data/dataSlice";
+import {
+  changeBookingModal,
+  changeModalOpen,
+} from "../../redux/modals/modalsSlice";
 import {
   BookIcon,
   BookingBtn,
@@ -27,13 +33,6 @@ import {
   TeacherStatsWrpr,
   TopPart,
 } from "./TeacherCard.styled";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsModalOpen } from "../../redux/selectors";
-import {
-  changeBookingModal,
-  changeModalOpen,
-} from "../../redux/modals/modalsSlice";
-import Modal from "../Modal/Modal";
 
 const TeacherCard = ({
   name,
@@ -50,10 +49,10 @@ const TeacherCard = ({
   experience,
 }) => {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(selectIsModalOpen);
   const [isReadingMore, setIsReadingMore] = useState(false);
 
   const onBookingClick = () => {
+    dispatch(changeSelectedTeacher({ name, surname, avatar_url }));
     dispatch(changeModalOpen(true));
     dispatch(changeBookingModal(true));
   };
@@ -162,7 +161,6 @@ const TeacherCard = ({
           <BookingBtn onClick={onBookingClick}>Book trial lesson</BookingBtn>
         )}
       </InfoWrapper>
-      {modalIsOpen && <Modal />}
     </TeacherCardWrpr>
   );
 };

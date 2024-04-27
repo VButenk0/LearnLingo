@@ -45,7 +45,7 @@ import { modalsReducer } from "./modals/modalsSlice";
 export const store = configureStore({
   reducer: {
     authSlice: authReducer,
-    statisticDataSlice: dataReducer,
+    dataSlice: dataReducer,
     modalsSlice: modalsReducer,
   },
   middleware: (getDefaultMiddleware) =>

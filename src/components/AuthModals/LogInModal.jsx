@@ -8,7 +8,7 @@ import {
   TitleWrapper,
 } from "./AuthModals.styled";
 
-const RegistrModal = () => {
+const LoginModal = () => {
   const initialValues = {
     email: "",
     password: "",
@@ -56,4 +56,4 @@ const RegistrModal = () => {
   );
 };
 
-export default RegistrModal;
+export default LoginModal;

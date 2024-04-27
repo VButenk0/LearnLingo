@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Fade from "@mui/material/Fade";
 import sprite from "../../assets/sprite.svg";
 import {
-  // selectBookingModal,
+  selectBookingModal,
   selectIsModalOpen,
   selectLogInModal,
   // selectLogoutModal,
@@ -20,16 +20,15 @@ import {
   Overlay,
   SvgBtnClose,
 } from "./Modal.styled";
+import BookingModal from "../BookingModal/BookingModal";
 
 const Modal = () => {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsModalOpen);
   const logInModal = useSelector(selectLogInModal);
-  console.log(logInModal);
   const registrModal = useSelector(selectRegisterModal);
-  console.log(registrModal);
   // const logoutModal = useSelector(selectLogoutModal);
-  // const bookingModal = useSelector(selectBookingModal);
+  const bookingModal = useSelector(selectBookingModal);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -72,11 +71,11 @@ const Modal = () => {
             <ModalStyled>
               {logInModal && <LogInModal />}
               {registrModal && <RegistrModal />}
-              {/* {logoutModal && <></>}
-              {bookingModal && <></>} */}
+              {/* {logoutModal && <></>} */}
+              {bookingModal && <BookingModal />}
 
               <BtnClose type="button" onClick={closeModal}>
-                <SvgBtnClose>
+                <SvgBtnClose width={32} height={32}>
                   <use href={`${sprite}#icon-close`} />
                 </SvgBtnClose>
               </BtnClose>

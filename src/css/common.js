@@ -3,6 +3,22 @@ import "./variables.css";
 
 export const Global = createGlobalStyle`
 
+* {
+    
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: var(--accent-bg);
+  }
+}
+
 body{
   font-family: 'Roboto Regular';
   font-size: 16px;

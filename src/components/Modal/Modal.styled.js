@@ -35,24 +35,16 @@ export const BtnClose = styled.button`
   border: none;
   height: 24px;
   padding: 0;
-  right: ${(props) => props.size || "12px"};
-  top: ${(props) => props.size || "28px"};
+  top: 20px;
+  right: 20px;
   transition: scale 300ms ease-in-out;
 
   &:hover,
   &:focus {
-    scale: 1.4;
-  }
-
-  @media (min-width: 768px) {
-    right: ${(props) => props.size || "24px"};
-    top: ${(props) => props.size || "36px"};
+    scale: 1.2;
   }
 `;
 
 export const SvgBtnClose = styled.svg`
-  width: 14px;
-  height: 14px;
-  stroke-width: 1.5px;
   stroke: var(--primary-text);
 `;
