@@ -67,7 +67,7 @@ const Modal = () => {
     <>
       <Overlay onClick={onBackdropClick}>
         <ModalContainer>
-          <Fade in={modalIsOpen} timeout={1000}>
+          <Fade in={modalIsOpen} timeout={700}>
             <ModalStyled>
               {logInModal && <LogInModal />}
               {registrModal && <RegistrModal />}
