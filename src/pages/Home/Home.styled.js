@@ -75,6 +75,7 @@ export const ImgWrp = styled.div`
   position: relative;
   flex-shrink: 0;
   align-items: end;
+  overflow: hidden;
 
   width: 568px;
   height: 100%;
@@ -89,10 +90,13 @@ export const GodImg = styled.img`
   left: 50px;
 `;
 
-export const LaptopImg = styled.img`
+export const LaptopImg = styled.div`
   position: absolute;
   left: 104px;
   bottom: 0;
+
+  box-shadow: 0 -6px 40px 20px #f4ffb6;
+  border-radius: 10px;
 `;
 
 export const AppleImg = styled.img`

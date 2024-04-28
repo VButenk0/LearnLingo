@@ -35,7 +35,9 @@ const Home = () => {
         </WelcomeWrp>
         <ImgWrp>
           <GodImg src={god} alt="God" width={450} />
-          <LaptopImg src={laptop} alt="Laptop" />
+          <LaptopImg>
+            <img src={laptop} alt="Laptop" />
+          </LaptopImg>
           <AppleImg src={apple} alt="Apple" />
         </ImgWrp>
       </MainWrp>
