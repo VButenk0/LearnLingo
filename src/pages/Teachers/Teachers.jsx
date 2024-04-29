@@ -83,6 +83,7 @@ const Teachers = () => {
           }) => (
             <TeacherCard
               key={nanoid()}
+              id={nanoid()}
               name={name}
               surname={surname}
               languages={languages}

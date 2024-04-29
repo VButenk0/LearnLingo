@@ -1,9 +1,9 @@
+import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import Container from "../../components/Container/Container";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
-import { CardsWrapper } from "../Teachers/Teachers.styled";
 import { selectFavorites } from "../../redux/selectors";
-import { useSelector } from "react-redux";
+import { CardsWrapper } from "../Teachers/Teachers.styled";
 
 const Favorites = () => {
   const favorites = useSelector(selectFavorites);

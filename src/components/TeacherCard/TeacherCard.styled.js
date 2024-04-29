@@ -103,9 +103,23 @@ export const StarIcon = styled.svg`
   fill: var(--star-color);
 `;
 
-export const NotFavIcon = styled.svg`
-  fill: none;
-  stroke: var(--primary-text);
+export const FavIcon = styled.svg`
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.full {
+    fill: var(--accent-color);
+    stroke: var(--accent-color);
+  }
+  &.empty {
+    fill: none;
+    stroke: var(--primary-text);
+  }
+
+  &:hover > use {
+    box-shadow: 3px 3px 5px 5px var(--accent-bg);
+  }
 `;
 
 export const SeparatorIcon = styled.svg`

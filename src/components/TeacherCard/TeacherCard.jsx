@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import sprite from "../../assets/sprite.svg";
 import { changeSelectedTeacher } from "../../redux/data/dataSlice";
@@ -17,7 +17,7 @@ import {
   InfoWrapper,
   LevelWrpr,
   LevelsWrpr,
-  NotFavIcon,
+  FavIcon,
   ReadMoreBtn,
   ReviewComment,
   ReviewRate,
@@ -33,8 +33,11 @@ import {
   TeacherStatsWrpr,
   TopPart,
 } from "./TeacherCard.styled";
+import { toggleFavoriteThunk } from "../../redux/auth/operations";
+import { selectFavorites } from "../../redux/selectors";
 
 const TeacherCard = ({
+  id,
   name,
   surname,
   languages,
@@ -49,12 +52,17 @@ const TeacherCard = ({
   experience,
 }) => {
   const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
   const [isReadingMore, setIsReadingMore] = useState(false);
 
   const onBookingClick = () => {
     dispatch(changeSelectedTeacher({ name, surname, avatar_url }));
     dispatch(changeModalOpen(true));
     dispatch(changeBookingModal(true));
+  };
+
+  const onHeartClick = (teacher) => {
+    dispatch(toggleFavoriteThunk(teacher));
   };
 
   return (
@@ -104,9 +112,43 @@ const TeacherCard = ({
                 Price / 1 hour: <span>{price_per_hour}$</span>
               </StatText>
             </TeacherStatsWrpr>
-            <NotFavIcon width={26} height={26}>
-              <use href={sprite + "#icon-empty-heart"}></use>
-            </NotFavIcon>
+            <FavIcon
+              onClick={() =>
+                onHeartClick({
+                  id,
+                  name,
+                  surname,
+                  languages,
+                  levels,
+                  rating,
+                  reviews,
+                  price_per_hour,
+                  lessons_done,
+                  avatar_url,
+                  lesson_info,
+                  conditions,
+                  experience,
+                })
+              }
+              className={
+                favorites.some((favorite) => favorite.id === id)
+                  ? "full"
+                  : "empty"
+              }
+              width={26}
+              height={26}
+            >
+              <use
+                href={
+                  sprite +
+                  `#icon-heart-${
+                    favorites.some((favorite) => favorite.id === id)
+                      ? "full"
+                      : "empty"
+                  }`
+                }
+              ></use>
+            </FavIcon>
           </StatsHeartWrpr>
         </TopPart>
         <div>

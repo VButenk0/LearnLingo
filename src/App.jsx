@@ -4,7 +4,7 @@ import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Teachers from "./pages/Teachers/Teachers";
 import Favorites from "./pages/Favorites/Favorites";
 import PublicRoute from "./routesConfig/PublicRoute";
-import PrivateRoute from "./routesConfig/PrivateRoute";
+// import PrivateRoute from "./routesConfig/PrivateRoute";
 
 function App() {
   return (
@@ -30,9 +30,11 @@ function App() {
           <Route
             path="/favorites"
             element={
-              <PrivateRoute>
+              // <PrivateRoute>
+              <PublicRoute>
                 <Favorites />
-              </PrivateRoute>
+              </PublicRoute>
+              // </PrivateRoute>
             }
           />
         </Route>

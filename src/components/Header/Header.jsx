@@ -50,6 +50,7 @@ const Header = () => {
         <NavWrpr>
           <StyledNavLink to="/">Home</StyledNavLink>
           <StyledNavLink to="/teachers">Teachers</StyledNavLink>
+          <StyledNavLink to="/favorites">Favorites</StyledNavLink>
         </NavWrpr>
         {isLoggedIn ? (
           <div>
