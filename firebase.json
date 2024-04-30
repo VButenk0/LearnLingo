@@ -1,5 +1,8 @@
 {
   "database": {
-    "rules": "y"
+    "rules": {
+      ".read": "now < 1716325200000",
+      ".write": "now < 1716325200000"
+    }
   }
 }

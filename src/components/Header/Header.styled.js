@@ -55,6 +55,25 @@ export const StyledNavLink = styled(NavLink)`
   }
 `;
 
+export const UserWrpr = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  p {
+    font-family: "Roboto Bold";
+    font-size: 18px;
+  }
+`;
+
+export const UserAvatar = styled.img`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+`;
+
 export const AuthWrpr = styled.div`
   display: flex;
   align-items: center;

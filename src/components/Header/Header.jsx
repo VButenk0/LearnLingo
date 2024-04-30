@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import sprite from "../../assets/sprite.svg";
 import Logo from "../../images/ukraine.png";
+import DefaultAvatar from "../../images/defaultAvatar.jpg";
 import Container from "../Container/Container";
 import Modal from "../Modal/Modal";
-import Favorites from "../../pages/Favorites/Favorites";
 import {
   changeLogInModal,
   changeModalOpen,
@@ -22,6 +22,8 @@ import {
   NavWrpr,
   RegisterBtn,
   StyledNavLink,
+  UserAvatar,
+  UserWrpr,
 } from "./Header.styled";
 
 const Header = () => {
@@ -50,20 +52,18 @@ const Header = () => {
         <NavWrpr>
           <StyledNavLink to="/">Home</StyledNavLink>
           <StyledNavLink to="/teachers">Teachers</StyledNavLink>
-          <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+          {isLoggedIn && (
+            <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+          )}
         </NavWrpr>
         {isLoggedIn ? (
-          <div>
-            <Favorites />
-            <div>
-              <p>{user.name}</p>
-              {user.avatar ? (
-                <img src="" alt="User Avatar" />
-              ) : (
-                <img src="" alt="Default Avatar" />
-              )}
-            </div>
-          </div>
+          <UserWrpr>
+            <p>{user.username}</p>
+            <UserAvatar
+              src={user.avatar ? "*" : DefaultAvatar}
+              alt="User Avatar"
+            />
+          </UserWrpr>
         ) : (
           <AuthWrpr>
             <LogInBtn onClick={onLogInClick}>

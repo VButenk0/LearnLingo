@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
   FormStyled,
@@ -7,8 +7,13 @@ import {
   SubmitBtn,
   TitleWrapper,
 } from "./AuthModals.styled";
+import { useDispatch } from "react-redux";
+import { signInThunk } from "../../redux/auth/operations";
+import { closeModals } from "../../redux/modals/modalsSlice";
 
 const LoginModal = () => {
+  const dispatch = useDispatch();
+
   const initialValues = {
     email: "",
     password: "",
@@ -22,8 +27,10 @@ const LoginModal = () => {
   });
 
   const onSubmit = (values, { setSubmitting }) => {
+    dispatch(signInThunk(values));
     console.log(values);
     setSubmitting(false);
+    dispatch(closeModals());
   };
 
   return (
@@ -41,10 +48,18 @@ const LoginModal = () => {
         onSubmit={onSubmit}
       >
         {(formik) => (
-          <FormStyled>
+          <FormStyled as={Form}>
             <InputsWrpr>
-              <InputStyled id="email" label="Email" />
-              <InputStyled id="password" label="Password" type="password" />
+              <Field as={InputStyled} id="email" name="email" label="Email" />
+              <ErrorMessage name="email" component="div" />
+              <Field
+                as={InputStyled}
+                id="password"
+                name="password"
+                label="Password"
+                type="password"
+              />
+              <ErrorMessage name="password" component="div" />
             </InputsWrpr>
             <SubmitBtn type="submit" disabled={formik.isSubmitting}>
               Log In
