@@ -11,7 +11,12 @@ import {
 } from "./Teachers.styled";
 
 const Teachers = () => {
-  const teachers = useSelector(selectTeachers);
+  const teachers = useSelector(selectTeachers).map((teacher) => ({
+    ...teacher,
+    id: `${teacher.name.toLowerCase()}-${teacher.surname.toLowerCase()}-${
+      teacher.price_per_hour
+    }${teacher.lessons_done}`,
+  }));
 
   const getLanguages = () => {
     const allLanguages = teachers.flatMap((teacher) => teacher.languages);
@@ -68,6 +73,7 @@ const Teachers = () => {
       <CardsWrapper>
         {teachers.map(
           ({
+            id,
             name,
             surname,
             languages,
@@ -83,7 +89,7 @@ const Teachers = () => {
           }) => (
             <TeacherCard
               key={nanoid()}
-              id={nanoid()}
+              id={id}
               name={name}
               surname={surname}
               languages={languages}
