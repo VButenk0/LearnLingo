@@ -74,6 +74,25 @@ export const UserAvatar = styled.img`
   border-radius: 50%;
 `;
 
+export const LogoutBtn = styled.button`
+  padding: 5px;
+  border-radius: 50%;
+
+  transition: all 0.3s;
+
+  use {
+    stroke: var(--accent-color);
+  }
+
+  &:hover {
+    background-color: var(--logout-btn);
+
+    use {
+      stroke: var(--white-text);
+    }
+  }
+`;
+
 export const AuthWrpr = styled.div`
   display: flex;
   align-items: center;

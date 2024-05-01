@@ -6,6 +6,7 @@ import Container from "../Container/Container";
 import Modal from "../Modal/Modal";
 import {
   changeLogInModal,
+  changeLogoutModal,
   changeModalOpen,
   changeRegisterModal,
 } from "../../redux/modals/modalsSlice";
@@ -19,6 +20,7 @@ import {
   HeaderWrpr,
   LogInBtn,
   LogoWrpr,
+  LogoutBtn,
   NavWrpr,
   RegisterBtn,
   StyledNavLink,
@@ -31,6 +33,11 @@ const Header = () => {
   const modalIsOpen = useSelector(selectIsModalOpen);
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLogged);
+
+  const onLogOutClick = () => {
+    dispatch(changeModalOpen(true));
+    dispatch(changeLogoutModal(true));
+  };
 
   const onLogInClick = () => {
     dispatch(changeModalOpen(true));
@@ -63,6 +70,11 @@ const Header = () => {
               src={user.avatar ? "*" : DefaultAvatar}
               alt="User Avatar"
             />
+            <LogoutBtn onClick={onLogOutClick}>
+              <svg width={16} height={16} fill="none">
+                <use href={sprite + "icon-logout"}></use>
+              </svg>
+            </LogoutBtn>
           </UserWrpr>
         ) : (
           <AuthWrpr>

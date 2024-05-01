@@ -7,7 +7,7 @@ import {
   selectBookingModal,
   selectIsModalOpen,
   selectLogInModal,
-  // selectLogoutModal,
+  selectLogoutModal,
   selectRegisterModal,
 } from "../../redux/selectors";
 import LogInModal from "../AuthModals/LogInModal";
@@ -21,13 +21,14 @@ import {
   SvgBtnClose,
 } from "./Modal.styled";
 import BookingModal from "../BookingModal/BookingModal";
+import LogoutModal from "../AuthModals/LogoutModal";
 
 const Modal = () => {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsModalOpen);
   const logInModal = useSelector(selectLogInModal);
   const registrModal = useSelector(selectRegisterModal);
-  // const logoutModal = useSelector(selectLogoutModal);
+  const logoutModal = useSelector(selectLogoutModal);
   const bookingModal = useSelector(selectBookingModal);
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const Modal = () => {
             <ModalStyled>
               {logInModal && <LogInModal />}
               {registrModal && <RegistrModal />}
-              {/* {logoutModal && <></>} */}
+              {logoutModal && <LogoutModal />}
               {bookingModal && <BookingModal />}
 
               <BtnClose type="button" onClick={closeModal}>
