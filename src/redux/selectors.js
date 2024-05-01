@@ -1,6 +1,8 @@
 export const selectUser = (state) => state.authSlice.user;
 export const selectFavorites = (state) => state.authSlice.user.favorites;
 export const selectIsLogged = (state) => state.authSlice.isLogged;
+export const selectIsRefresh = (state) => state.authSlice.isRefresh;
+export const selectIsLoading = (state) => state.authSlice.isLoading;
 export const selectIsModalOpen = (state) => state.modalsSlice.isModalOpen;
 export const selectLogInModal = (state) => state.modalsSlice.logInModal;
 export const selectRegisterModal = (state) => state.modalsSlice.registerModal;

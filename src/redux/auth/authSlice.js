@@ -1,5 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { signInThunk, signUpThunk } from "./operations.js";
+import { createAction, createSlice } from "@reduxjs/toolkit";
+import {
+  refreshThunk,
+  signInThunk,
+  signOutThunk,
+  signUpThunk,
+} from "./operations.js";
+
+export const updateUserFromLookupResponse = createAction(
+  "auth/updateUserFromLookupResponse"
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -35,6 +44,12 @@ export const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(updateUserFromLookupResponse, (state, action) => {
+        const { token, email, username } = action.payload;
+        state.token = token;
+        state.user.email = email;
+        state.user.username = username;
+      })
       .addCase(signUpThunk.fulfilled, (state, { payload }) => {
         const { token, email, username } = payload;
         state.token = token;
@@ -42,22 +57,8 @@ export const authSlice = createSlice({
         state.user.username = username;
         state.isLogged = true;
         state.isLoading = false;
-        console.log("Реєстрація пройшла успішно (log слайсу)");
-      })
-      .addCase(signInThunk.fulfilled, (state, { payload }) => {
-        state.isLogged = true;
-        const { token, email, username } = payload;
-        state.user.email = email;
-        state.user.username = username;
-        state.token = token;
-        state.isLogged = true;
-        state.isLoading = false;
       })
       .addCase(signUpThunk.pending, (state) => {
-        state.isLoading = true;
-        state.isError = null;
-      })
-      .addCase(signInThunk.pending, (state) => {
         state.isLoading = true;
         state.isError = null;
       })
@@ -66,8 +67,57 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
+      .addCase(signInThunk.fulfilled, (state, { payload }) => {
+        const { token, email, username } = payload;
+        state.token = token;
+        state.user.email = email;
+        state.user.username = username;
+        state.isLogged = true;
+        state.isLoading = false;
+      })
+      .addCase(signInThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
       .addCase(signInThunk.rejected, (state, { payload }) => {
         state.isLogged = false;
+        state.isLoading = false;
+        state.isError = payload;
+      })
+      .addCase(refreshThunk.fulfilled, (state, { payload }) => {
+        const { token, email, username } = payload;
+        state.token = token;
+        state.user.email = email;
+        state.user.username = username;
+        state.isLogged = true;
+        state.isLoading = false;
+        state.isRefresh = false;
+      })
+      .addCase(refreshThunk.pending, (state) => {
+        state.isLogged = true;
+        state.isLoading = true;
+        state.isRefresh = true;
+        state.isError = null;
+      })
+      .addCase(refreshThunk.rejected, (state, { payload }) => {
+        state.isLogged = false;
+        state.isLoading = false;
+        state.isRefresh = false;
+        state.isError = payload;
+      })
+      .addCase(signOutThunk.fulfilled, (state) => {
+        state.token = "";
+        state.user.email = "";
+        state.user.username = "";
+        state.isLogged = false;
+        state.isLoading = false;
+      })
+      .addCase(signOutThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isError = null;
+      })
+      .addCase(signOutThunk.rejected, (state, { payload }) => {
+        state.isLogged = true;
         state.isLoading = false;
         state.isError = payload;
       });

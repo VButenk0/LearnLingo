@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toggleFavorite } from "./authSlice";
-import { authApi } from "../../configAxios/configAxios";
+import { toggleFavorite, updateUserFromLookupResponse } from "./authSlice";
 import {
   createUserWithEmailAndPassword,
+  onIdTokenChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../../firebase.config";
@@ -48,7 +48,6 @@ export const signUpThunk = createAsyncThunk(
         token: user.idToken,
         email: user.email,
         username: user.displayName,
-        // Додайте інші необхідні поля користувача тут, якщо потрібно
       };
     } catch (error) {
       console.log(error.message);
@@ -74,7 +73,6 @@ export const signInThunk = createAsyncThunk(
         token: user.idToken,
         email: user.email,
         username: user.displayName,
-        // Додайте інші необхідні поля користувача тут, якщо потрібно
       };
     } catch (error) {
       console.log(error.message);
@@ -85,29 +83,50 @@ export const signInThunk = createAsyncThunk(
 
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
-  // credentials = idToken
-  async (credentials, thunkApi) => {
+  async (_, thunkApi) => {
     try {
-      const { data } = await authApi.post("lookup", credentials);
-      return data;
+      const userData = {};
+
+      const unsubscribe = onIdTokenChanged(auth, async (user) => {
+        if (user) {
+          const idTokenResult = await user.getIdTokenResult();
+          const token = idTokenResult.token;
+          const email = idTokenResult.claims.email;
+          const username = idTokenResult.claims.name;
+
+          // Тут ви можете обробити дані з запиту lookup
+          console.log(
+            `idTokenResult: ${JSON.stringify(idTokenResult)}
+            idTokenResult.claims: ${JSON.stringify(idTokenResult.claims)}
+            username: ${username}; email: ${email}; token: ${token}.`
+            // `Дані з запиту lookup: ${JSON.stringify(
+            //   idTokenResult.claims
+            // )} та токен ${token}`
+          );
+          thunkApi.dispatch(
+            updateUserFromLookupResponse({ token, email, username })
+          );
+          unsubscribe();
+        }
+      });
+      return userData;
     } catch (error) {
+      console.log(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
 
-// export const logoutThunk = createAsyncThunk(
-//   "auth/logout",
-//   async (_, thunkApi) => {
-//     try {
-//       await api.post("api/auth/logout");
-//       localStorage.removeItem("auth");
-//       localStorage.removeItem("counter");
-//       localStorage.removeItem("data");
-//       clearToken();
-//     } catch (error) {
-//       toast.error(error.message);
-//       return thunkApi.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const signOutThunk = createAsyncThunk(
+  "auth/logout",
+  async (_, thunkApi) => {
+    try {
+      await auth.signOut();
+      console.log("Вихід з облікового запису успішний");
+      return;
+    } catch (error) {
+      console.log(error.message);
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
