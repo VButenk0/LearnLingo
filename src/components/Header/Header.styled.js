@@ -75,6 +75,9 @@ export const UserAvatar = styled.img`
 `;
 
 export const LogoutBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px;
   border-radius: 50%;
 

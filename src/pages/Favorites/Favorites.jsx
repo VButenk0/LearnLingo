@@ -14,6 +14,7 @@ const Favorites = () => {
         <CardsWrapper>
           {favorites.map(
             ({
+              id,
               name,
               surname,
               languages,
@@ -29,6 +30,7 @@ const Favorites = () => {
             }) => (
               <TeacherCard
                 key={nanoid()}
+                id={id}
                 name={name}
                 surname={surname}
                 languages={languages}

@@ -117,7 +117,7 @@ export const refreshThunk = createAsyncThunk(
   }
 );
 
-export const signOutThunk = createAsyncThunk(
+export const logoutThunk = createAsyncThunk(
   "auth/logout",
   async (_, thunkApi) => {
     try {

@@ -2,8 +2,8 @@ import { createAction, createSlice } from "@reduxjs/toolkit";
 import {
   refreshThunk,
   signInThunk,
-  signOutThunk,
   signUpThunk,
+  logoutThunk,
 } from "./operations.js";
 
 export const updateUserFromLookupResponse = createAction(
@@ -105,18 +105,18 @@ export const authSlice = createSlice({
         state.isRefresh = false;
         state.isError = payload;
       })
-      .addCase(signOutThunk.fulfilled, (state) => {
+      .addCase(logoutThunk.fulfilled, (state) => {
         state.token = "";
         state.user.email = "";
         state.user.username = "";
         state.isLogged = false;
         state.isLoading = false;
       })
-      .addCase(signOutThunk.pending, (state) => {
+      .addCase(logoutThunk.pending, (state) => {
         state.isLoading = true;
         state.isError = null;
       })
-      .addCase(signOutThunk.rejected, (state, { payload }) => {
+      .addCase(logoutThunk.rejected, (state, { payload }) => {
         state.isLogged = true;
         state.isLoading = false;
         state.isError = payload;

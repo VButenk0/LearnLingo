@@ -72,7 +72,7 @@ const Header = () => {
             />
             <LogoutBtn onClick={onLogOutClick}>
               <svg width={16} height={16} fill="none">
-                <use href={sprite + "icon-logout"}></use>
+                <use href={sprite + "#icon-logout"}></use>
               </svg>
             </LogoutBtn>
           </UserWrpr>
