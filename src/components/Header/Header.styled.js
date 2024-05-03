@@ -42,7 +42,7 @@ export const NavWrpr = styled.div`
 export const StyledNavLink = styled(NavLink)`
   font-size: 16px;
   line-height: 1.25;
-  transition: all 0.3s;
+  transition: all 0.2s;
 
   &:hover {
     color: var(--accent-color);

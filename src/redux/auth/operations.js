@@ -94,15 +94,6 @@ export const refreshThunk = createAsyncThunk(
           const email = idTokenResult.claims.email;
           const username = idTokenResult.claims.name;
 
-          // Тут ви можете обробити дані з запиту lookup
-          console.log(
-            `idTokenResult: ${JSON.stringify(idTokenResult)}
-            idTokenResult.claims: ${JSON.stringify(idTokenResult.claims)}
-            username: ${username}; email: ${email}; token: ${token}.`
-            // `Дані з запиту lookup: ${JSON.stringify(
-            //   idTokenResult.claims
-            // )} та токен ${token}`
-          );
           thunkApi.dispatch(
             updateUserFromLookupResponse({ token, email, username })
           );

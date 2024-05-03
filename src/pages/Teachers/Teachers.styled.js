@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const TeachersPageWrpr = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+
 export const SelectsWrpr = styled.div`
   display: flex;
   gap: 20px;
@@ -69,6 +75,25 @@ export const CardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+`;
 
-  padding: 32px 0;
+export const LoadMoreBtn = styled.button`
+  width: fit-content;
+  padding: 16px 48px;
+  margin: 32px auto 96px;
+
+  color: var(--white-text);
+  background-color: var(--accent-color);
+  border-radius: 12px;
+
+  font-family: "Roboto Bold";
+  font-size: 18px;
+  line-height: 1.6;
+
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--primary-text);
+    background-color: var(--accent-hover);
+  }
 `;
