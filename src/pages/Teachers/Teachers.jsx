@@ -8,6 +8,7 @@ import {
   selectTeachers,
 } from "../../redux/selectors";
 import { getTeachersThunk } from "../../redux/data/operations";
+import { incrementLoadedTeachersCount } from "../../redux/data/dataSlice";
 import {
   CardsWrapper,
   LoadMoreBtn,
@@ -16,7 +17,6 @@ import {
   StyledSelect,
   TeachersPageWrpr,
 } from "./Teachers.styled";
-import { incrementLoadedTeachersCount } from "../../redux/data/dataSlice";
 
 const Teachers = () => {
   const dispatch = useDispatch();

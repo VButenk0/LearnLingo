@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw",
@@ -17,5 +17,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const { uid, email, displayName, favorites } = user;
+
+    const userRef = ref(database, `users/${uid}`);
+    if (favorites !== undefined) {
+      update(userRef, {
+        email,
+        username: displayName,
+        favorites: favorites || [],
+      });
+    } else {
+      update(userRef, { email, username: displayName });
+    }
+  } else {
+    console.log("Користувач вийшов з системи");
+  }
+});
 
 export { auth, database };

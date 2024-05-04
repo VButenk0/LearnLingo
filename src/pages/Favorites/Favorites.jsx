@@ -10,9 +10,9 @@ const Favorites = () => {
 
   return (
     <Container>
-      {favorites.length !== 0 ? (
+      {favorites?.length ? (
         <CardsWrapper>
-          {favorites.map(
+          {favorites?.map(
             ({
               id,
               name,

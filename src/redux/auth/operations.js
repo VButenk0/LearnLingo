@@ -5,13 +5,10 @@ import {
   onIdTokenChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../../../firebase.config";
+import { auth, database } from "../../../firebase.config";
+import { ref, set } from "firebase/database";
 
 export const API_KEY = "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw";
-
-export const toggleFavoriteThunk = (teacher) => (dispatch) => {
-  dispatch(toggleFavorite(teacher));
-};
 
 export const signUpThunk = createAsyncThunk(
   "auth/signUp",
@@ -36,6 +33,7 @@ export const signUpThunk = createAsyncThunk(
           body: JSON.stringify({
             idToken: idToken.token,
             displayName: username,
+            favorites: [],
           }),
         }
       );
@@ -73,6 +71,7 @@ export const signInThunk = createAsyncThunk(
         token: user.idToken,
         email: user.email,
         username: user.displayName,
+        favorites: user.favorites,
       };
     } catch (error) {
       console.log(error.message);
@@ -93,9 +92,10 @@ export const refreshThunk = createAsyncThunk(
           const token = idTokenResult.token;
           const email = idTokenResult.claims.email;
           const username = idTokenResult.claims.name;
+          const favorites = idTokenResult.claims.favorites;
 
           thunkApi.dispatch(
-            updateUserFromLookupResponse({ token, email, username })
+            updateUserFromLookupResponse({ token, email, username, favorites })
           );
           unsubscribe();
         }
@@ -121,3 +121,29 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+
+export const updateFavoritesInDatabase = createAsyncThunk(
+  "auth/updateFavorites",
+  async (_, { getState }) => {
+    const {
+      auth: { user },
+      firebase: {
+        user: { uid },
+      },
+    } = getState();
+
+    try {
+      const userRef = ref(database, `users/${uid}`);
+      await set(userRef, { ...user });
+    } catch (error) {
+      console.error("Error updating favorites in database: ", error);
+      throw error;
+    }
+  }
+);
+
+export const toggleFavoriteThunk = (teacher) => async (dispatch) => {
+  dispatch(toggleFavorite(teacher));
+
+  dispatch(updateFavoritesInDatabase());
+};

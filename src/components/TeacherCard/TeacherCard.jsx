@@ -34,7 +34,7 @@ import {
   TopPart,
 } from "./TeacherCard.styled";
 import { toggleFavoriteThunk } from "../../redux/auth/operations";
-import { selectFavorites } from "../../redux/selectors";
+import { selectFavorites, selectIsLogged } from "../../redux/selectors";
 
 const TeacherCard = ({
   id,
@@ -53,6 +53,7 @@ const TeacherCard = ({
 }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
+  const isLogged = useSelector(selectIsLogged);
   const [isReadingMore, setIsReadingMore] = useState(false);
 
   const onBookingClick = () => {
@@ -62,7 +63,11 @@ const TeacherCard = ({
   };
 
   const onHeartClick = (teacher) => {
-    dispatch(toggleFavoriteThunk(teacher));
+    if (isLogged) {
+      dispatch(toggleFavoriteThunk(teacher));
+    } else {
+      console.log("Favorites access only for logged users");
+    }
   };
 
   return (
@@ -131,7 +136,7 @@ const TeacherCard = ({
                 })
               }
               className={
-                favorites.some((favorite) => favorite.id === id)
+                favorites?.some((favorite) => favorite.id === id)
                   ? "full"
                   : "empty"
               }
@@ -142,7 +147,7 @@ const TeacherCard = ({
                 href={
                   sprite +
                   `#icon-heart-${
-                    favorites.some((favorite) => favorite.id === id)
+                    favorites?.some((favorite) => favorite.id === id)
                       ? "full"
                       : "empty"
                   }`
