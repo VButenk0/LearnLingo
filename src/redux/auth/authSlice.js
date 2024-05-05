@@ -1,6 +1,6 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
 import {
-  // refreshThunk,
+  refreshThunk,
   signInThunk,
   signUpThunk,
   logoutThunk,
@@ -89,25 +89,26 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = payload;
       })
-      // .addCase(refreshThunk.fulfilled, (state, { payload }) => {
-      //   const { token, email, username } = payload;
-      //   state.token = token;
-      //   state.user.email = email;
-      //   state.user.username = username;
-      //   state.isLoading = false;
-      //   state.isRefresh = false;
-      // })
-      // .addCase(refreshThunk.pending, (state) => {
-      //   state.isLoading = true;
-      //   state.isRefresh = true;
-      //   state.isError = null;
-      // })
-      // .addCase(refreshThunk.rejected, (state, { payload }) => {
-      //   state.isLogged = false;
-      //   state.isLoading = false;
-      //   state.isRefresh = false;
-      //   state.isError = payload;
-      // })
+      .addCase(refreshThunk.fulfilled, (state, { payload }) => {
+        const { token, email, username, favorites } = payload;
+        state.token = token;
+        state.user.email = email;
+        state.user.username = username;
+        state.user.favorites = favorites;
+        state.isLoading = false;
+        state.isRefresh = false;
+      })
+      .addCase(refreshThunk.pending, (state) => {
+        state.isLoading = true;
+        state.isRefresh = true;
+        state.isError = null;
+      })
+      .addCase(refreshThunk.rejected, (state, { payload }) => {
+        state.isLogged = false;
+        state.isLoading = false;
+        state.isRefresh = false;
+        state.isError = payload;
+      })
       .addCase(logoutThunk.fulfilled, (state) => {
         state.token = "";
         state.user.email = "";

@@ -1,8 +1,17 @@
 {
-  "database": {
-    "rules": {
-      ".read": "now < 1716325200000",
-      ".write": "now < 1716325200000"
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        "favorites": {
+          ".validate": "newData.exists()"
+        }
+      }
+    },
+    "teachers": {
+      ".read": true,
+      ".write": false
     }
   }
 }

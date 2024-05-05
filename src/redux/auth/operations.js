@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth, database } from "../../../firebase.config";
-import { ref, set } from "firebase/database";
+import { get, ref, update } from "firebase/database";
 
 export const API_KEY = "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw";
 
@@ -89,10 +89,13 @@ export const refreshThunk = createAsyncThunk(
       const unsubscribe = onIdTokenChanged(auth, async (user) => {
         if (user) {
           const idTokenResult = await user.getIdTokenResult();
+          console.log(idTokenResult);
           const token = idTokenResult.token;
           const email = idTokenResult.claims.email;
           const username = idTokenResult.claims.name;
-          const favorites = idTokenResult.claims.favorites;
+          const userRef = ref(database, `users/${user.uid}`);
+          const snapshot = await get(userRef);
+          const favorites = snapshot.val().favorites;
 
           thunkApi.dispatch(
             updateUserFromLookupResponse({ token, email, username, favorites })
@@ -125,16 +128,18 @@ export const logoutThunk = createAsyncThunk(
 export const updateFavoritesInDatabase = createAsyncThunk(
   "auth/updateFavorites",
   async (_, { getState }) => {
-    const {
-      auth: { user },
-      firebase: {
-        user: { uid },
-      },
-    } = getState();
+    const { favorites } = getState().authSlice.user;
+    console.log(favorites);
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      throw new Error("No user is currently signed in.");
+    }
 
     try {
-      const userRef = ref(database, `users/${uid}`);
-      await set(userRef, { ...user });
+      const userRef = ref(database, `users/${currentUser.uid}`);
+      await update(userRef, { favorites });
+      console.log("Favorites updated successfully in the database");
     } catch (error) {
       console.error("Error updating favorites in database: ", error);
       throw error;
