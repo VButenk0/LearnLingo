@@ -89,7 +89,6 @@ export const refreshThunk = createAsyncThunk(
       const unsubscribe = onIdTokenChanged(auth, async (user) => {
         if (user) {
           const idTokenResult = await user.getIdTokenResult();
-          console.log(idTokenResult);
           const token = idTokenResult.token;
           const email = idTokenResult.claims.email;
           const username = idTokenResult.claims.name;
