@@ -26,6 +26,7 @@ body{
   color: var(--primary-text);
   background-color: var(--bcgclr);
   margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -46,6 +47,8 @@ ol {
 
 img {
   display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 a {

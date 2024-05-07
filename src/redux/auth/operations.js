@@ -64,6 +64,7 @@ export const signInThunk = createAsyncThunk(
         password
       );
       const user = userCredential.user;
+      console.log(user);
 
       console.log("Успішний вхід");
 
@@ -128,15 +129,15 @@ export const updateFavoritesInDatabase = createAsyncThunk(
   "auth/updateFavorites",
   async (_, { getState }) => {
     const { favorites } = getState().authSlice.user;
-    console.log(favorites);
     const currentUser = auth.currentUser;
 
     if (!currentUser) {
       throw new Error("No user is currently signed in.");
     }
 
+    const userRef = ref(database, `users/${currentUser.uid}`);
+
     try {
-      const userRef = ref(database, `users/${currentUser.uid}`);
       await update(userRef, { favorites });
       console.log("Favorites updated successfully in the database");
     } catch (error) {

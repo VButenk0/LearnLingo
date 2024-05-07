@@ -28,7 +28,6 @@ const LoginModal = () => {
 
   const onSubmit = (values, { setSubmitting }) => {
     dispatch(signInThunk(values));
-    console.log(values);
     setSubmitting(false);
     dispatch(closeModals());
   };

@@ -17,9 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshThunk());
   }, [dispatch]);
-  {
-    /* Замінити пізніше <p>Loading</p> на <Loader/> */
-  }
+
   return (
     <>
       {isLoading && <Loader />}
