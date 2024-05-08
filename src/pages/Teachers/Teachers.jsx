@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import Container from "../../components/Container/Container";
@@ -22,6 +22,10 @@ const Teachers = () => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
   const loadedTeachersCount = useSelector(selectLoadedTeachersCount);
+
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("");
 
   const getLanguages = () => {
     const allLanguages = teachers
@@ -47,6 +51,26 @@ const Teachers = () => {
     dispatch(incrementLoadedTeachersCount());
   };
 
+  const filteredTeachers = teachers.filter((teacher) => {
+    let isLanguageMatch = true;
+    let isLevelMatch = true;
+    let isPriceMatch = true;
+
+    if (selectedLanguage !== "") {
+      isLanguageMatch = teacher.languages.includes(selectedLanguage);
+    }
+
+    if (selectedLevel !== "") {
+      isLevelMatch = teacher.levels.includes(selectedLevel);
+    }
+
+    if (selectedPrice !== "") {
+      isPriceMatch = teacher.price_per_hour === parseInt(selectedPrice);
+    }
+
+    return isLanguageMatch && isLevelMatch && isPriceMatch;
+  });
+
   useEffect(() => {
     dispatch(getTeachersThunk(loadedTeachersCount));
   }, [dispatch, loadedTeachersCount]);
@@ -57,7 +81,12 @@ const Teachers = () => {
         <SelectsWrpr>
           <SelectWrpr>
             <label htmlFor="languages">Languages</label>
-            <StyledSelect name="languages" id="languages">
+            <StyledSelect
+              name="languages"
+              id="languages"
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+            >
               {getLanguages().map((language) => (
                 <option key={nanoid()} value={language}>
                   {language}
@@ -67,7 +96,12 @@ const Teachers = () => {
           </SelectWrpr>
           <SelectWrpr>
             <label htmlFor="level">Level of knowledge</label>
-            <StyledSelect name="level" id="level">
+            <StyledSelect
+              name="level"
+              id="level"
+              value={selectedLevel}
+              onChange={(e) => setSelectedLevel(e.target.value)}
+            >
               {getLevels().map((level) => (
                 <option key={nanoid()} value={level}>
                   {level}
@@ -77,7 +111,12 @@ const Teachers = () => {
           </SelectWrpr>
           <SelectWrpr>
             <label htmlFor="price">Price</label>
-            <StyledSelect name="price" id="price">
+            <StyledSelect
+              name="price"
+              id="price"
+              value={selectedPrice}
+              onChange={(e) => setSelectedPrice(e.target.value)}
+            >
               {getPrices().map((price) => (
                 <option key={nanoid()} value={price}>
                   {price}
@@ -87,7 +126,7 @@ const Teachers = () => {
           </SelectWrpr>
         </SelectsWrpr>
         <CardsWrapper>
-          {teachers.map(
+          {filteredTeachers.map(
             ({
               id,
               name,
