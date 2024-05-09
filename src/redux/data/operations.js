@@ -9,6 +9,26 @@ import {
   startAt,
 } from "firebase/database";
 
+export const getAllTeachersThunk = createAsyncThunk(
+  "data/getAllTeachers",
+  async (_, thunkApi) => {
+    try {
+      const collectionRef = ref(database, "teachers");
+      const snapshot = await get(collectionRef);
+
+      const allTeachers = snapshot.exists()
+        ? Object.entries(snapshot.val()).map(([id, value]) => ({
+            id,
+            ...value,
+          }))
+        : [];
+      return allTeachers;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getTeachersThunk = createAsyncThunk(
   "data/getTeachers",
   async (loadedTeachersCount, thunkAPI) => {

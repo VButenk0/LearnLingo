@@ -4,22 +4,26 @@ import { nanoid } from "@reduxjs/toolkit";
 import Container from "../../components/Container/Container";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 import {
+  selectAllTeachers,
   selectLoadedTeachersCount,
   selectTeachers,
 } from "../../redux/selectors";
-import { getTeachersThunk } from "../../redux/data/operations";
+import {
+  getAllTeachersThunk,
+  getTeachersThunk,
+} from "../../redux/data/operations";
 import { incrementLoadedTeachersCount } from "../../redux/data/dataSlice";
 import {
   CardsWrapper,
   LoadMoreBtn,
-  SelectWrpr,
   SelectsWrpr,
-  StyledSelect,
   TeachersPageWrpr,
 } from "./Teachers.styled";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const Teachers = () => {
   const dispatch = useDispatch();
+  const allTeachers = useSelector(selectAllTeachers);
   const teachers = useSelector(selectTeachers);
   const loadedTeachersCount = useSelector(selectLoadedTeachersCount);
 
@@ -28,14 +32,14 @@ const Teachers = () => {
   const [selectedPrice, setSelectedPrice] = useState("");
 
   const getLanguages = () => {
-    const allLanguages = teachers
+    const allLanguages = allTeachers
       .flatMap((teacher) => teacher.languages)
       .sort((a, b) => a - b);
     return Array.from(new Set(allLanguages));
   };
 
   const getLevels = () => {
-    const allLevels = teachers.flatMap((teacher) => teacher.levels);
+    const allLevels = allTeachers.flatMap((teacher) => teacher.levels);
     return Array.from(new Set(allLevels));
   };
 
@@ -51,7 +55,7 @@ const Teachers = () => {
     dispatch(incrementLoadedTeachersCount());
   };
 
-  const filteredTeachers = teachers.filter((teacher) => {
+  const filteredTeachers = allTeachers.filter((teacher) => {
     let isLanguageMatch = true;
     let isLevelMatch = true;
     let isPriceMatch = true;
@@ -65,11 +69,17 @@ const Teachers = () => {
     }
 
     if (selectedPrice !== "") {
-      isPriceMatch = teacher.price_per_hour === parseInt(selectedPrice);
+      isPriceMatch = teacher.price_per_hour >= parseInt(selectedPrice);
     }
 
     return isLanguageMatch && isLevelMatch && isPriceMatch;
   });
+
+  console.log(filteredTeachers);
+
+  useEffect(() => {
+    dispatch(getAllTeachersThunk());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getTeachersThunk(loadedTeachersCount));
@@ -79,69 +89,84 @@ const Teachers = () => {
     <Container>
       <TeachersPageWrpr>
         <SelectsWrpr>
-          <SelectWrpr>
-            <label htmlFor="languages">Languages</label>
-            <StyledSelect
-              name="languages"
-              id="languages"
+          <FormControl>
+            <InputLabel id="language">Languages</InputLabel>
+            <Select
+              labelId="language"
+              id="language"
               value={selectedLanguage}
+              label="Languages"
               onChange={(e) => setSelectedLanguage(e.target.value)}
+              sx={{ width: 222, borderRadius: 4 }}
             >
+              <MenuItem value="">None</MenuItem>
               {getLanguages().map((language) => (
-                <option key={nanoid()} value={language}>
+                <MenuItem key={nanoid()} value={language}>
                   {language}
-                </option>
+                </MenuItem>
               ))}
-            </StyledSelect>
-          </SelectWrpr>
-          <SelectWrpr>
-            <label htmlFor="level">Level of knowledge</label>
-            <StyledSelect
-              name="level"
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel id="level">Level of knowledge</InputLabel>
+            <Select
+              labelId="level"
               id="level"
               value={selectedLevel}
+              label="Level of knowledge"
               onChange={(e) => setSelectedLevel(e.target.value)}
+              sx={{ width: 222, borderRadius: 4 }}
             >
+              <MenuItem value="">None</MenuItem>
               {getLevels().map((level) => (
-                <option key={nanoid()} value={level}>
+                <MenuItem key={nanoid()} value={level}>
                   {level}
-                </option>
+                </MenuItem>
               ))}
-            </StyledSelect>
-          </SelectWrpr>
-          <SelectWrpr>
-            <label htmlFor="price">Price</label>
-            <StyledSelect
-              name="price"
+            </Select>
+          </FormControl>
+          <FormControl>
+            <InputLabel id="price">Price</InputLabel>
+            <Select
+              labelId="price"
               id="price"
               value={selectedPrice}
+              label="Price"
               onChange={(e) => setSelectedPrice(e.target.value)}
+              sx={{ width: 124, borderRadius: 4, color: "var(--border-color)" }}
             >
+              <MenuItem value="">None</MenuItem>
               {getPrices().map((price) => (
-                <option key={nanoid()} value={price}>
+                <MenuItem key={nanoid()} value={price}>
                   {price}
-                </option>
+                </MenuItem>
               ))}
-            </StyledSelect>
-          </SelectWrpr>
+            </Select>
+          </FormControl>
         </SelectsWrpr>
         <CardsWrapper>
-          {filteredTeachers.map(
-            ({
-              id,
-              name,
-              surname,
-              languages,
-              levels,
-              rating,
-              reviews,
-              price_per_hour,
-              lessons_done,
-              avatar_url,
-              lesson_info,
-              conditions,
-              experience,
-            }) => (
+          {(filteredTeachers.length < allTeachers.length
+            ? filteredTeachers
+            : teachers
+          ).map(
+            (
+              {
+                id,
+                name,
+                surname,
+                languages,
+                levels,
+                rating,
+                reviews,
+                price_per_hour,
+                lessons_done,
+                avatar_url,
+                lesson_info,
+                conditions,
+                experience,
+              },
+              selectedLevel
+            ) => (
               <TeacherCard
                 key={nanoid()}
                 id={id}
@@ -157,11 +182,14 @@ const Teachers = () => {
                 lesson_info={lesson_info}
                 conditions={conditions}
                 experience={experience}
+                selectedLevel={selectedLevel}
               />
             )
           )}
         </CardsWrapper>
-        <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
+        {filteredTeachers.length >= allTeachers.length && (
+          <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
+        )}
       </TeachersPageWrpr>
     </Container>
   );

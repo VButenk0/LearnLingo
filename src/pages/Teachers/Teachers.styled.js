@@ -4,6 +4,7 @@ export const TeachersPageWrpr = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding-bottom: 96px;
 `;
 
 export const SelectsWrpr = styled.div`
@@ -80,7 +81,7 @@ export const CardsWrapper = styled.div`
 export const LoadMoreBtn = styled.button`
   width: fit-content;
   padding: 16px 48px;
-  margin: 32px auto 96px;
+  margin: 0 auto;
 
   color: var(--white-text);
   background-color: var(--accent-color);
