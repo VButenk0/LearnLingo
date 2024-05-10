@@ -50,6 +50,7 @@ const TeacherCard = ({
   lesson_info,
   conditions,
   experience,
+  selectedLevel,
 }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
@@ -199,7 +200,10 @@ const TeacherCard = ({
         )}
         <LevelsWrpr>
           {levels.map((level) => (
-            <LevelWrpr key={nanoid()}>
+            <LevelWrpr
+              key={nanoid()}
+              className={level === selectedLevel ? "selected" : ""}
+            >
               <p>{level}</p>
             </LevelWrpr>
           ))}

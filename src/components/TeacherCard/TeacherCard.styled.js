@@ -168,8 +168,7 @@ export const LevelWrpr = styled.div`
   font-size: 14px;
   line-height: 1.4;
 
-  /* &.active */
-  &:first-of-type {
+  &.selected {
     color: var(--white-text);
     background-color: var(--accent-color);
     border: none;

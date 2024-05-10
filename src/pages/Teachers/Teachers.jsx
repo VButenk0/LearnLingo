@@ -17,9 +17,12 @@ import {
   CardsWrapper,
   LoadMoreBtn,
   SelectsWrpr,
+  StyledLabel,
+  StyledMenuItem,
+  StyledSelect,
   TeachersPageWrpr,
 } from "./Teachers.styled";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem } from "@mui/material";
 
 const Teachers = () => {
   const dispatch = useDispatch();
@@ -75,8 +78,6 @@ const Teachers = () => {
     return isLanguageMatch && isLevelMatch && isPriceMatch;
   });
 
-  console.log(filteredTeachers);
-
   useEffect(() => {
     dispatch(getAllTeachersThunk());
   }, [dispatch]);
@@ -90,8 +91,8 @@ const Teachers = () => {
       <TeachersPageWrpr>
         <SelectsWrpr>
           <FormControl>
-            <InputLabel id="language">Languages</InputLabel>
-            <Select
+            <StyledLabel id="language">Languages</StyledLabel>
+            <StyledSelect
               labelId="language"
               id="language"
               value={selectedLanguage}
@@ -99,17 +100,17 @@ const Teachers = () => {
               onChange={(e) => setSelectedLanguage(e.target.value)}
               sx={{ width: 222, borderRadius: 4 }}
             >
-              <MenuItem value="">None</MenuItem>
+              <StyledMenuItem value="">None</StyledMenuItem>
               {getLanguages().map((language) => (
-                <MenuItem key={nanoid()} value={language}>
+                <StyledMenuItem key={nanoid()} value={language}>
                   {language}
-                </MenuItem>
+                </StyledMenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </FormControl>
           <FormControl>
-            <InputLabel id="level">Level of knowledge</InputLabel>
-            <Select
+            <StyledLabel id="level">Level of knowledge</StyledLabel>
+            <StyledSelect
               labelId="level"
               id="level"
               value={selectedLevel}
@@ -117,31 +118,32 @@ const Teachers = () => {
               onChange={(e) => setSelectedLevel(e.target.value)}
               sx={{ width: 222, borderRadius: 4 }}
             >
-              <MenuItem value="">None</MenuItem>
+              <StyledMenuItem value="">None</StyledMenuItem>
               {getLevels().map((level) => (
-                <MenuItem key={nanoid()} value={level}>
+                <StyledMenuItem key={nanoid()} value={level}>
                   {level}
-                </MenuItem>
+                </StyledMenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </FormControl>
           <FormControl>
-            <InputLabel id="price">Price</InputLabel>
-            <Select
+            <StyledLabel id="price">Price</StyledLabel>
+            <StyledSelect
               labelId="price"
               id="price"
               value={selectedPrice}
               label="Price"
               onChange={(e) => setSelectedPrice(e.target.value)}
-              sx={{ width: 124, borderRadius: 4, color: "var(--border-color)" }}
+              sx={{ width: 124, borderRadius: 4 }}
             >
-              <MenuItem value="">None</MenuItem>
+              <StyledMenuItem value="">0</StyledMenuItem>
               {getPrices().map((price) => (
-                <MenuItem key={nanoid()} value={price}>
+                <StyledMenuItem key={nanoid()} value={price}>
                   {price}
-                </MenuItem>
+                  {selectedPrice === price && " $"}
+                </StyledMenuItem>
               ))}
-            </Select>
+            </StyledSelect>
           </FormControl>
         </SelectsWrpr>
         <CardsWrapper>
@@ -149,24 +151,21 @@ const Teachers = () => {
             ? filteredTeachers
             : teachers
           ).map(
-            (
-              {
-                id,
-                name,
-                surname,
-                languages,
-                levels,
-                rating,
-                reviews,
-                price_per_hour,
-                lessons_done,
-                avatar_url,
-                lesson_info,
-                conditions,
-                experience,
-              },
-              selectedLevel
-            ) => (
+            ({
+              id,
+              name,
+              surname,
+              languages,
+              levels,
+              rating,
+              reviews,
+              price_per_hour,
+              lessons_done,
+              avatar_url,
+              lesson_info,
+              conditions,
+              experience,
+            }) => (
               <TeacherCard
                 key={nanoid()}
                 id={id}
@@ -185,6 +184,12 @@ const Teachers = () => {
                 selectedLevel={selectedLevel}
               />
             )
+          )}
+          {!filteredTeachers.length && (
+            <h2>
+              Sorry, but none of our teachers fit the given filters. Please try
+              to change them.
+            </h2>
           )}
         </CardsWrapper>
         {filteredTeachers.length >= allTeachers.length && (

@@ -1,3 +1,4 @@
+import { InputLabel, MenuItem, Select } from "@mui/material";
 import styled from "styled-components";
 
 export const TeachersPageWrpr = styled.div`
@@ -12,63 +13,43 @@ export const SelectsWrpr = styled.div`
   gap: 20px;
 `;
 
-export const SelectWrpr = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+export const StyledLabel = styled(InputLabel)`
+  color: var(--gray-text) !important;
+  font-family: "Roboto Medium";
+  font-size: 14px;
+  line-height: 1.3;
 
-  label {
-    color: var(--gray-text);
-    font-family: "Roboto Medium";
-    font-size: 14px;
-    line-height: 1.3;
+  &.Mui-focused {
+    color: var(--primary-text) !important;
   }
 `;
 
-export const StyledSelect = styled.select`
-  &#languages {
-    width: 221px;
-  }
-
-  &#level {
-    width: 198px;
-  }
-
-  &#price {
-    width: 124px;
-  }
-
-  padding: 16px 70px 16px 18px;
-  border: 3px solid var(--border-color);
+export const StyledSelect = styled(Select)`
   border-radius: 14px;
-  outline: none;
+  outline: "none";
+
+  & .MuiOutlinedInput-notchedOutline {
+    border-color: var(--border-color) !important;
+  }
 
   font-family: "Roboto Medium";
   font-size: 18px;
   line-height: 1.1;
+`;
 
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+export const StyledMenuItem = styled(MenuItem)`
+  color: var(--translucent20-text) !important;
+  font-family: "Roboto Medium";
+  font-size: "18px";
+  line-height: 1.1;
 
-  background: transparent;
-  background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 7.5L10 12.5L15 7.5" stroke="%23121417" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 14px center;
+  overflow: "hidden";
+  white-space: "nowrap";
+  text-overflow: "ellipsis";
 
-  option {
-    color: var(--translucent20-text);
-    font-family: "Roboto Medium";
-    font-size: 18px;
-    line-height: 1.1;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:active {
-      color: var(--primary-text);
-    }
+  &.Mui-selected {
+    color: var(--primary-text) !important;
+    background-color: transparent !important;
   }
 `;
 
