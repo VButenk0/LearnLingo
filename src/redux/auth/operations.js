@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth, database } from "../../../firebase.config";
 import { get, ref, update } from "firebase/database";
+import { toast } from "react-toastify";
 
 export const API_KEY = "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw";
 
@@ -40,7 +41,7 @@ export const signUpThunk = createAsyncThunk(
 
       await response.json();
 
-      console.log("Реєстрація пройшла успішно");
+      toast.info("Sign up successful!");
 
       return {
         token: user.idToken,
@@ -48,7 +49,7 @@ export const signUpThunk = createAsyncThunk(
         username: user.displayName,
       };
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -64,9 +65,8 @@ export const signInThunk = createAsyncThunk(
         password
       );
       const user = userCredential.user;
-      console.log(user);
 
-      console.log("Успішний вхід");
+      toast.info("Log in successful!");
 
       return {
         token: user.idToken,
@@ -75,7 +75,7 @@ export const signInThunk = createAsyncThunk(
         favorites: user.favorites,
       };
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -105,7 +105,7 @@ export const refreshThunk = createAsyncThunk(
       });
       return userData;
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -116,10 +116,9 @@ export const logoutThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       await auth.signOut();
-      console.log("Вихід з облікового запису успішний");
       return;
     } catch (error) {
-      console.log(error.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -127,7 +126,7 @@ export const logoutThunk = createAsyncThunk(
 
 export const updateFavoritesInDatabase = createAsyncThunk(
   "auth/updateFavorites",
-  async (_, { getState }) => {
+  async (_, thunkApi, { getState }) => {
     const { favorites } = getState().authSlice.user;
     const currentUser = auth.currentUser;
 
@@ -139,10 +138,8 @@ export const updateFavoritesInDatabase = createAsyncThunk(
 
     try {
       await update(userRef, { favorites });
-      console.log("Favorites updated successfully in the database");
     } catch (error) {
-      console.error("Error updating favorites in database: ", error);
-      throw error;
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );

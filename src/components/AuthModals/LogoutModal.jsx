@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { LogOutModalWrpr, LogoutButtonsWrpr } from "./AuthModals.styled";
 import { logoutThunk } from "../../redux/auth/operations";
 import { closeModals } from "../../redux/modals/modalsSlice";
+import { toast } from "react-toastify";
 
 const LogoutModal = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const LogoutModal = () => {
   const onLogoutClick = () => {
     dispatch(logoutThunk());
     dispatch(closeModals());
+    toast.info("Logout successful!");
   };
 
   return (

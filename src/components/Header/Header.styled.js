@@ -5,7 +5,7 @@ export const HeaderWrpr = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 64px;
+  padding: 20px 0;
 `;
 
 export const LogoWrpr = styled(Link)`

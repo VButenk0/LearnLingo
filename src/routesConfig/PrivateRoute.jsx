@@ -1,24 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { selectIsLogged } from "../redux/selectors.js";
-import {
-  changeLogInModal,
-  changeModalOpen,
-} from "../redux/modals/modalsSlice.js";
+import { useEffect } from "react";
 
 const PrivateRoute = ({ children }) => {
-  const dispatch = useDispatch();
+  const isLogged = useSelector(selectIsLogged);
+  const navigate = useNavigate();
 
-  const openModal = () => {
-    dispatch(changeModalOpen(true));
-    dispatch(changeLogInModal(true));
-  };
+  useEffect(() => {
+    if (!isLogged) {
+      toast.info("You need to be logged in to access Favorites!");
+      navigate("/");
+    }
+  }, [isLogged, navigate]);
 
-  const isLogedIn = useSelector(selectIsLogged);
-  if (isLogedIn) {
-    return children;
-  } else {
-    return openModal();
-  }
+  return isLogged ? children : null;
 };
 
 export default PrivateRoute;

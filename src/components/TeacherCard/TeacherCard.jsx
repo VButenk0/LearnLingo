@@ -35,6 +35,7 @@ import {
 } from "./TeacherCard.styled";
 import { toggleFavoriteThunk } from "../../redux/auth/operations";
 import { selectFavorites, selectIsLogged } from "../../redux/selectors";
+import { toast } from "react-toastify";
 
 const TeacherCard = ({
   id,
@@ -67,7 +68,7 @@ const TeacherCard = ({
     if (isLogged) {
       dispatch(toggleFavoriteThunk(teacher));
     } else {
-      console.log("Favorites access only for logged users");
+      toast.info("Favorites access only for logged users");
     }
   };
 

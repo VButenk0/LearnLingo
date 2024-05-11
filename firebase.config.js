@@ -33,7 +33,7 @@ onAuthStateChanged(auth, (user) => {
       update(userRef, { email, username: displayName });
     }
   } else {
-    console.log("Користувач вийшов з системи");
+    return null;
   }
 });
 

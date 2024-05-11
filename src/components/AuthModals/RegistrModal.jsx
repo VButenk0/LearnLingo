@@ -10,6 +10,7 @@ import {
 import { useDispatch } from "react-redux";
 import { signUpThunk } from "../../redux/auth/operations";
 import { closeModals } from "../../redux/modals/modalsSlice";
+import { toast } from "react-toastify";
 
 const RegistrModal = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,9 @@ const RegistrModal = () => {
 
   const onSubmit = (values, { setSubmitting }) => {
     dispatch(signUpThunk(values));
-    console.log(values);
     setSubmitting(false);
     dispatch(closeModals());
+    toast.info("Sign up successful!");
   };
 
   return (
