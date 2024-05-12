@@ -79,3 +79,13 @@ export const LoadMoreBtn = styled.button`
     background-color: var(--accent-hover);
   }
 `;
+
+export const NoSuchTeachers = styled.p`
+  width: 65%;
+  margin: 0 auto;
+
+  font-family: "Roboto Regular";
+  font-size: 36px;
+  padding: 50px;
+  text-align: center;
+`;

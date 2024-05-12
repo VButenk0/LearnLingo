@@ -32,7 +32,6 @@ const RegistrModal = () => {
     dispatch(signUpThunk(values));
     setSubmitting(false);
     dispatch(closeModals());
-    toast.info("Sign up successful!");
   };
 
   return (

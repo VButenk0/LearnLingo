@@ -1,14 +1,16 @@
+import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home/Home";
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Teachers from "./pages/Teachers/Teachers";
 import Favorites from "./pages/Favorites/Favorites";
 import PublicRoute from "./routesConfig/PublicRoute";
+import PrivateRoute from "./routesConfig/PrivateRoute";
 import { refreshThunk } from "./redux/auth/operations";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoadingData } from "./redux/selectors";
 import Loader from "./components/Loader/Loader";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,11 +44,12 @@ function App() {
           <Route
             path="/favorites"
             element={
-              <PublicRoute>
+              <PrivateRoute>
                 <Favorites />
-              </PublicRoute>
+              </PrivateRoute>
             }
           />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </>

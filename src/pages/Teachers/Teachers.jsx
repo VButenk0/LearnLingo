@@ -16,13 +16,14 @@ import { incrementLoadedTeachersCount } from "../../redux/data/dataSlice";
 import {
   CardsWrapper,
   LoadMoreBtn,
+  NoSuchTeachers,
   SelectsWrpr,
   StyledLabel,
   StyledMenuItem,
   StyledSelect,
   TeachersPageWrpr,
 } from "./Teachers.styled";
-import { FormControl, MenuItem } from "@mui/material";
+import { FormControl } from "@mui/material";
 
 const Teachers = () => {
   const dispatch = useDispatch();
@@ -186,10 +187,10 @@ const Teachers = () => {
             )
           )}
           {!filteredTeachers.length && (
-            <h2>
+            <NoSuchTeachers>
               Sorry, but none of our teachers fit the given filters. Please try
               to change them.
-            </h2>
+            </NoSuchTeachers>
           )}
         </CardsWrapper>
         {filteredTeachers.length >= allTeachers.length && (

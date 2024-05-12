@@ -126,7 +126,8 @@ export const logoutThunk = createAsyncThunk(
 
 export const updateFavoritesInDatabase = createAsyncThunk(
   "auth/updateFavorites",
-  async (_, thunkApi, { getState }) => {
+  async (_, thunkApi) => {
+    const { getState } = thunkApi;
     const { favorites } = getState().authSlice.user;
     const currentUser = auth.currentUser;
 
