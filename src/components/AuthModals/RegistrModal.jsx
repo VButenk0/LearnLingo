@@ -10,7 +10,6 @@ import {
 import { useDispatch } from "react-redux";
 import { signUpThunk } from "../../redux/auth/operations";
 import { closeModals } from "../../redux/modals/modalsSlice";
-import { toast } from "react-toastify";
 
 const RegistrModal = () => {
   const dispatch = useDispatch();
@@ -58,9 +57,33 @@ const RegistrModal = () => {
                 name="username"
                 label="Name"
               />
-              <ErrorMessage name="username" component="div" />
+              <ErrorMessage name="username">
+                {(msg) => (
+                  <div
+                    style={{
+                      color: "red",
+                      position: "absolute",
+                      right: "10px",
+                    }}
+                  >
+                    {msg}
+                  </div>
+                )}
+              </ErrorMessage>
               <Field as={InputStyled} id="email" name="email" label="Email" />
-              <ErrorMessage name="email" component="div" />
+              <ErrorMessage name="email">
+                {(msg) => (
+                  <div
+                    style={{
+                      color: "red",
+                      position: "absolute",
+                      right: "10px",
+                    }}
+                  >
+                    {msg}
+                  </div>
+                )}
+              </ErrorMessage>
               <Field
                 as={InputStyled}
                 id="password"
@@ -68,7 +91,19 @@ const RegistrModal = () => {
                 label="Password"
                 type="password"
               />
-              <ErrorMessage name="password" component="div" />
+              <ErrorMessage name="password">
+                {(msg) => (
+                  <div
+                    style={{
+                      color: "red",
+                      position: "absolute",
+                      right: "10px",
+                    }}
+                  >
+                    {msg}
+                  </div>
+                )}
+              </ErrorMessage>
             </InputsWrpr>
             <SubmitBtn type="submit" disabled={formik.isSubmitting}>
               Sign Up

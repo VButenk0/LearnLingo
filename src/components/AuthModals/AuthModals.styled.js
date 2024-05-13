@@ -40,7 +40,15 @@ export const InputsWrpr = styled.div`
   gap: 18px;
 `;
 
+export const OneInputWrpr = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+`;
+
 export const InputStyled = styled(TextField)`
+  flex: 1;
   div {
     border-radius: 12px;
   }

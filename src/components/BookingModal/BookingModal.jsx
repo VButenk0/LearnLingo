@@ -2,9 +2,16 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { FormControlLabel, RadioGroup } from "@mui/material";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { selectIsLogged, selectSelectedTeacher } from "../../redux/selectors";
 import { closeModals } from "../../redux/modals/modalsSlice";
-import { InputStyled, InputsWrpr } from "../AuthModals/AuthModals.styled";
+import {
+  FormStyled,
+  InputStyled,
+  InputsWrpr,
+  OneInputWrpr,
+} from "../AuthModals/AuthModals.styled";
 import {
   BookingModalWrpr,
   StyledRadio,
@@ -14,6 +21,7 @@ import {
   TeacherNameWrpr,
   TitleBooking,
 } from "./BookingModal.styled";
+import { signUpThunk } from "../../redux/auth/operations";
 
 const BookingModal = () => {
   const dispatch = useDispatch();
@@ -47,6 +55,27 @@ const BookingModal = () => {
       } will help you achieve it.`;
     }
     return newValue;
+  };
+
+  const initialValues = {
+    username: "",
+    email: "",
+    password: "",
+  };
+
+  const validationSchema = Yup.object({
+    username: Yup.string().required("Required"),
+    email: Yup.string().email("Invalid email address").required("Required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Required"),
+  });
+
+  const onSubmit = (values, { setSubmitting }) => {
+    dispatch(signUpThunk(values));
+    setSubmitting(false);
+    dispatch(closeModals());
+    toast.success(`Booking successful! ${makeCorrectMessage()}`);
   };
 
   const onBookClick = () => {
@@ -108,13 +137,91 @@ const BookingModal = () => {
         </RadioGroup>
       </div>
       {!isLogged && (
-        <InputsWrpr>
-          <InputStyled id="username" label="Name" />
-          <InputStyled id="email" label="Email" />
-          <InputStyled id="password" label="Password" type="password" />
-        </InputsWrpr>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {(formik) => (
+            <FormStyled as={Form}>
+              <InputsWrpr>
+                <OneInputWrpr>
+                  <Field
+                    as={InputStyled}
+                    id="username"
+                    name="username"
+                    label="Name"
+                  />
+                  <ErrorMessage name="username">
+                    {(msg) => (
+                      <div
+                        style={{
+                          color: "red",
+                          position: "absolute",
+                          right: "10px",
+                        }}
+                      >
+                        {msg}
+                      </div>
+                    )}
+                  </ErrorMessage>
+                </OneInputWrpr>
+                <OneInputWrpr>
+                  <Field
+                    as={InputStyled}
+                    id="email"
+                    name="email"
+                    label="Email"
+                  />
+                  <ErrorMessage name="email">
+                    {(msg) => (
+                      <div
+                        style={{
+                          color: "red",
+                          position: "absolute",
+                          right: "10px",
+                        }}
+                      >
+                        {msg}
+                      </div>
+                    )}
+                  </ErrorMessage>
+                </OneInputWrpr>
+                <OneInputWrpr>
+                  <Field
+                    as={InputStyled}
+                    id="password"
+                    name="password"
+                    label="Password"
+                    type="password"
+                  />
+                  <ErrorMessage name="password">
+                    {(msg) => (
+                      <div
+                        style={{
+                          color: "red",
+                          position: "absolute",
+                          right: "10px",
+                        }}
+                      >
+                        {msg}
+                      </div>
+                    )}
+                  </ErrorMessage>
+                </OneInputWrpr>
+              </InputsWrpr>
+              <SubmitBtn
+                type="submit"
+                onClick={formik.handleSubmit}
+                disabled={formik.isSubmitting}
+              >
+                Book
+              </SubmitBtn>
+            </FormStyled>
+          )}
+        </Formik>
       )}
-      <SubmitBtn onClick={onBookClick}>Book</SubmitBtn>
+      {isLogged && <SubmitBtn onClick={onBookClick}>Book</SubmitBtn>}
     </BookingModalWrpr>
   );
 };

@@ -15,9 +15,14 @@ export const LogoWrpr = styled(Link)`
 
   padding: 5px;
 
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid none;
   border-radius: 12px;
 
   cursor: pointer;
+
+  transition: all 0.3s;
 
   p {
     font-family: "Roboto Medium", sans-serif;
@@ -27,10 +32,8 @@ export const LogoWrpr = styled(Link)`
   }
 
   &:hover {
-    border-width: 2px;
     border-top-color: var(--top-border-flag);
     border-bottom-color: var(--bottom-border-flag);
-    border-style: solid none;
   }
 `;
 

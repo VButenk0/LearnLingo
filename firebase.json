@@ -1,17 +1,5 @@
 {
-  "rules": {
-    "users": {
-      "$uid": {
-        ".read": "auth != null",
-        ".write": "auth != null",
-        "favorites": {
-          ".validate": "newData.exists()"
-        }
-      }
-    },
-    "teachers": {
-      ".read": true,
-      ".write": false
-    }
+  "database": {
+    "rules": "database.rules.json"
   }
 }
