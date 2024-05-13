@@ -2,7 +2,7 @@
   "name": "learnlingo-butenko",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://VButenk0.github.io/LearnLingo",
+  "homepage": "https://vbutenk0.github.io/LearnLingo/",
   "type": "module",
   "scripts": {
     "dev": "vite",
