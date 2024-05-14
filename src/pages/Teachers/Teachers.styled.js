@@ -15,37 +15,32 @@ export const SelectsWrpr = styled.div`
 
 export const StyledLabel = styled(InputLabel)`
   color: var(--gray-text) !important;
-  font-family: "Roboto Medium";
+  font-family: "Roboto Medium" !important;
   font-size: 14px;
   line-height: 1.3;
-
-  &.Mui-focused {
-    color: var(--primary-text) !important;
-  }
 `;
 
 export const StyledSelect = styled(Select)`
   border-radius: 14px;
-  outline: "none";
+  outline: none;
 
   & .MuiOutlinedInput-notchedOutline {
     border-color: var(--border-color) !important;
   }
 
-  font-family: "Roboto Medium";
-  font-size: 18px;
+  font-family: "Roboto Medium" !important;
   line-height: 1.1;
 `;
 
 export const StyledMenuItem = styled(MenuItem)`
   color: var(--translucent20-text) !important;
-  font-family: "Roboto Medium";
-  font-size: "18px";
+  font-family: "Roboto Medium" !important;
+  font-size: 18px !important;
   line-height: 1.1;
 
-  overflow: "hidden";
-  white-space: "nowrap";
-  text-overflow: "ellipsis";
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   &.Mui-selected {
     color: var(--primary-text) !important;

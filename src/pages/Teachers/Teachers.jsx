@@ -5,6 +5,7 @@ import Container from "../../components/Container/Container";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 import {
   selectAllTeachers,
+  selectIsLoading,
   selectLoadedTeachersCount,
   selectTeachers,
 } from "../../redux/selectors";
@@ -27,6 +28,7 @@ import { FormControl } from "@mui/material";
 
 const Teachers = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
   const allTeachers = useSelector(selectAllTeachers);
   const teachers = useSelector(selectTeachers);
   const loadedTeachersCount = useSelector(selectLoadedTeachersCount);
@@ -89,114 +91,116 @@ const Teachers = () => {
 
   return (
     <Container>
-      <TeachersPageWrpr>
-        <SelectsWrpr>
-          <FormControl>
-            <StyledLabel id="language">Languages</StyledLabel>
-            <StyledSelect
-              labelId="language"
-              id="language"
-              value={selectedLanguage}
-              label="Languages"
-              onChange={(e) => setSelectedLanguage(e.target.value)}
-              sx={{ width: 222, borderRadius: 4 }}
-            >
-              <StyledMenuItem value="">None</StyledMenuItem>
-              {getLanguages().map((language) => (
-                <StyledMenuItem key={nanoid()} value={language}>
-                  {language}
-                </StyledMenuItem>
-              ))}
-            </StyledSelect>
-          </FormControl>
-          <FormControl>
-            <StyledLabel id="level">Level of knowledge</StyledLabel>
-            <StyledSelect
-              labelId="level"
-              id="level"
-              value={selectedLevel}
-              label="Level of knowledge"
-              onChange={(e) => setSelectedLevel(e.target.value)}
-              sx={{ width: 222, borderRadius: 4 }}
-            >
-              <StyledMenuItem value="">None</StyledMenuItem>
-              {getLevels().map((level) => (
-                <StyledMenuItem key={nanoid()} value={level}>
-                  {level}
-                </StyledMenuItem>
-              ))}
-            </StyledSelect>
-          </FormControl>
-          <FormControl>
-            <StyledLabel id="price">Price</StyledLabel>
-            <StyledSelect
-              labelId="price"
-              id="price"
-              value={selectedPrice}
-              label="Price"
-              onChange={(e) => setSelectedPrice(e.target.value)}
-              sx={{ width: 124, borderRadius: 4 }}
-            >
-              <StyledMenuItem value="">0</StyledMenuItem>
-              {getPrices().map((price) => (
-                <StyledMenuItem key={nanoid()} value={price}>
-                  {price}
-                  {selectedPrice === price && " $"}
-                </StyledMenuItem>
-              ))}
-            </StyledSelect>
-          </FormControl>
-        </SelectsWrpr>
-        <CardsWrapper>
-          {(filteredTeachers.length < allTeachers.length
-            ? filteredTeachers
-            : teachers
-          ).map(
-            ({
-              id,
-              name,
-              surname,
-              languages,
-              levels,
-              rating,
-              reviews,
-              price_per_hour,
-              lessons_done,
-              avatar_url,
-              lesson_info,
-              conditions,
-              experience,
-            }) => (
-              <TeacherCard
-                key={nanoid()}
-                id={id}
-                name={name}
-                surname={surname}
-                languages={languages}
-                levels={levels}
-                rating={rating}
-                reviews={reviews}
-                price_per_hour={price_per_hour}
-                lessons_done={lessons_done}
-                avatar_url={avatar_url}
-                lesson_info={lesson_info}
-                conditions={conditions}
-                experience={experience}
-                selectedLevel={selectedLevel}
-              />
-            )
+      {!isLoading && (
+        <TeachersPageWrpr>
+          <SelectsWrpr>
+            <FormControl>
+              <StyledLabel id="language">Languages</StyledLabel>
+              <StyledSelect
+                labelId="language"
+                id="language"
+                value={selectedLanguage}
+                label="Languages"
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                sx={{ width: 222, borderRadius: 4 }}
+              >
+                <StyledMenuItem value="">None</StyledMenuItem>
+                {getLanguages().map((language) => (
+                  <StyledMenuItem key={nanoid()} value={language}>
+                    {language}
+                  </StyledMenuItem>
+                ))}
+              </StyledSelect>
+            </FormControl>
+            <FormControl>
+              <StyledLabel id="level">Level of knowledge</StyledLabel>
+              <StyledSelect
+                labelId="level"
+                id="level"
+                value={selectedLevel}
+                label="Level of knowledge"
+                onChange={(e) => setSelectedLevel(e.target.value)}
+                sx={{ width: 222, borderRadius: 4 }}
+              >
+                <StyledMenuItem value="">None</StyledMenuItem>
+                {getLevels().map((level) => (
+                  <StyledMenuItem key={nanoid()} value={level}>
+                    {level}
+                  </StyledMenuItem>
+                ))}
+              </StyledSelect>
+            </FormControl>
+            <FormControl>
+              <StyledLabel id="price">Price</StyledLabel>
+              <StyledSelect
+                labelId="price"
+                id="price"
+                value={selectedPrice}
+                label="Price"
+                onChange={(e) => setSelectedPrice(e.target.value)}
+                sx={{ width: 124, borderRadius: 4 }}
+              >
+                <StyledMenuItem value="">0</StyledMenuItem>
+                {getPrices().map((price) => (
+                  <StyledMenuItem key={nanoid()} value={price}>
+                    {price}
+                    {selectedPrice === price && " $"}
+                  </StyledMenuItem>
+                ))}
+              </StyledSelect>
+            </FormControl>
+          </SelectsWrpr>
+          <CardsWrapper>
+            {(filteredTeachers.length < allTeachers.length
+              ? filteredTeachers
+              : teachers
+            ).map(
+              ({
+                id,
+                name,
+                surname,
+                languages,
+                levels,
+                rating,
+                reviews,
+                price_per_hour,
+                lessons_done,
+                avatar_url,
+                lesson_info,
+                conditions,
+                experience,
+              }) => (
+                <TeacherCard
+                  key={nanoid()}
+                  id={id}
+                  name={name}
+                  surname={surname}
+                  languages={languages}
+                  levels={levels}
+                  rating={rating}
+                  reviews={reviews}
+                  price_per_hour={price_per_hour}
+                  lessons_done={lessons_done}
+                  avatar_url={avatar_url}
+                  lesson_info={lesson_info}
+                  conditions={conditions}
+                  experience={experience}
+                  selectedLevel={selectedLevel}
+                />
+              )
+            )}
+            {!filteredTeachers.length && (
+              <NoSuchTeachers>
+                Sorry, but none of our teachers fit the given filters. Please
+                try to change them.
+              </NoSuchTeachers>
+            )}
+          </CardsWrapper>
+          {filteredTeachers.length >= allTeachers.length && (
+            <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
           )}
-          {!filteredTeachers.length && (
-            <NoSuchTeachers>
-              Sorry, but none of our teachers fit the given filters. Please try
-              to change them.
-            </NoSuchTeachers>
-          )}
-        </CardsWrapper>
-        {filteredTeachers.length >= allTeachers.length && (
-          <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
-        )}
-      </TeachersPageWrpr>
+        </TeachersPageWrpr>
+      )}
     </Container>
   );
 };

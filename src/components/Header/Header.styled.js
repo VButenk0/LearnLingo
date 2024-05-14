@@ -5,7 +5,7 @@ export const HeaderWrpr = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 64px;
 `;
 
 export const LogoWrpr = styled(Link)`
@@ -41,6 +41,8 @@ export const NavWrpr = styled.div`
   display: flex;
   align-items: center;
   gap: 28px;
+
+  justify-content: center;
 `;
 export const StyledNavLink = styled(NavLink)`
   font-size: 16px;
