@@ -4,63 +4,63 @@ import styled from "styled-components";
 export const MainWrp = styled.div`
   display: flex;
   width: 100%;
-  height: 530px;
-  gap: 24px;
+  /* height: fit-content; */
+  gap: 1.5rem;
 
-  padding-bottom: 24px;
+  padding-bottom: 1.5rem;
 `;
 
 export const WelcomeWrp = styled.div`
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
-  box-sizing: border-box;
+  /* flex-shrink: 0; */
+  /* box-sizing: border-box; */
 
-  padding: 98px 64px;
-  width: 720px;
-  height: 100%;
-  border-radius: 30px;
+  padding: 6.12rem 4rem;
+  width: 55%;
+  /* height: 100%; */
+  border-radius: 1.875rem;
   background-color: var(--second-bgclr);
   text-align: left;
 `;
 
 export const WelcomeTitle = styled.h1`
-  width: 548px;
+  /* width: 100%; */
 
   font-family: "Roboto Medium";
-  font-size: 48px;
+  font-size: 3rem;
   line-height: 1.17;
-  letter-spacing: -0.96px;
+  letter-spacing: -0.06rem;
 
-  padding-bottom: 32px;
+  padding-bottom: 2rem;
 
   span {
     font-family: "Roboto Regular";
     font-style: italic;
 
-    border-radius: 8px;
+    border-radius: 0.5rem;
     background: var(--accent-bg);
 
-    padding: 0 5px;
+    padding: 0 0.5rem;
   }
 `;
 
 export const WelcomeText = styled.p`
-  width: 471px;
-  line-height: 1.4;
-  letter-spacing: -0.32px;
-  padding-bottom: 64px;
+  /* width: 100%; */
+  line-height: 1.38;
+  letter-spacing: -0.02rem;
+  padding-bottom: 4rem;
 `;
 
 export const WelcomeButton = styled(Link)`
   width: fit-content;
-  padding: 16px 88px;
+  padding: 1rem 5.5rem;
 
   color: var(--white-text);
   background-color: var(--accent-color);
-  border-radius: 12px;
+  border-radius: 0.75rem;
 
-  font-size: 18px;
+  font-size: 1.125rem;
   font-family: "Roboto Bold";
 
   transition: all 0.3s;
@@ -72,72 +72,78 @@ export const WelcomeButton = styled(Link)`
 `;
 
 export const ImgWrp = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
-  flex-shrink: 0;
-  align-items: end;
+  /* flex-shrink: 0; */
+  align-items: center;
   overflow: hidden;
 
-  width: 568px;
-  height: 100%;
+  width: 45%;
+  /* height: 100%; */
 
-  border-radius: 30px;
+  border-radius: 1.875rem;
   background-color: var(--accent-bg);
 `;
 
 export const GodImg = styled.img`
   position: absolute;
-  top: -20px;
-  left: 50px;
+  top: -1rem;
+
+  width: 28rem;
 `;
 
 export const LaptopImg = styled.div`
   position: absolute;
-  left: 104px;
   bottom: 0;
+  z-index: 10;
 
-  box-shadow: 0 -6px 40px 20px #f4ffb6;
-  border-radius: 10px;
-`;
+  box-shadow: 0 -0.375rem 2.5rem 1.25rem #f4ffb6;
+  border-radius: 0.625rem;
 
-export const AppleImg = styled.img`
-  position: absolute;
-  left: 260px;
-  bottom: 55px;
+  img {
+    width: 22.5rem;
+    height: 11rem;
+  }
 `;
 
 export const TutorStatsWrp = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 100px;
+  /* gap: 6.25rem; */
 
-  padding: 40px 122px;
+  padding: 2.5rem 7.69rem;
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%239B9AE0FF' stroke-width='1.5' stroke-dasharray='15%2c 15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   background-position: center;
-  border-radius: 30px;
+  border-radius: 1.875rem;
 `;
 
 export const OneStatWrp = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 1rem;
 `;
 
 export const StatNumber = styled.p`
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   font-family: "Roboto Medium";
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 1.14;
-  letter-spacing: -0.56px;
+  letter-spacing: -0.035rem;
 `;
 
 export const StatDescr = styled.p`
-  width: 96px;
+  width: 6rem;
 
   color: var(--translucent-text);
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 1.29;
-  letter-spacing: -0.28px;
+  letter-spacing: -0.0175rem;
 
   &.shorter {
-    width: 74px;
+    width: 4.625rem;
   }
 `;

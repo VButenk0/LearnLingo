@@ -1,7 +1,6 @@
 import Container from "../../components/Container/Container";
 import god from "../../images/Memoji Boys 2-7.png";
 import laptop from "../../images/Union.png";
-import apple from "../../images/apple.png";
 import {
   WelcomeText,
   WelcomeWrp,
@@ -10,7 +9,6 @@ import {
   WelcomeButton,
   ImgWrp,
   LaptopImg,
-  AppleImg,
   GodImg,
   TutorStatsWrp,
   OneStatWrp,
@@ -34,11 +32,10 @@ const Home = () => {
           <WelcomeButton to={"/teachers"}>Get started</WelcomeButton>
         </WelcomeWrp>
         <ImgWrp>
-          <GodImg src={god} alt="God" width={450} />
+          <GodImg src={god} alt="God" />
           <LaptopImg>
             <img src={laptop} alt="Laptop" />
           </LaptopImg>
-          <AppleImg src={apple} alt="Apple" />
         </ImgWrp>
       </MainWrp>
       <TutorStatsWrp>
