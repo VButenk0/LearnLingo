@@ -4,14 +4,18 @@ import styled from "styled-components";
 export const BookingModalWrpr = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 `;
 
 export const TitleBooking = styled.h2`
   font-family: "Roboto Medium";
-  font-size: 40px;
+  font-size: 2.5rem;
   line-height: 1.2;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.05rem;
+
+  @media only screen and (max-width: 767px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const SupTextBook = styled.p`
@@ -21,18 +25,23 @@ export const SupTextBook = styled.p`
 
 export const TeacherBookWrpr = styled.div`
   display: flex;
-  gap: 14px;
-  padding-bottom: 20px;
+  align-items: center;
+  gap: 0.875rem;
+  padding-bottom: 1.25rem;
 
   img {
     border-radius: 50%;
+  }
+
+  @media only screen and (max-width: 767px) {
+    gap: 0.5rem;
   }
 `;
 
 export const TeacherNameWrpr = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 
   p {
     font-family: "Roboto Medium";
@@ -40,7 +49,7 @@ export const TeacherNameWrpr = styled.div`
 
   p:first-child {
     color: var(--gray-text);
-    font-size: 12px;
+    font-size: 0.75rem;
     line-height: 1.3;
   }
 `;
@@ -48,12 +57,12 @@ export const TeacherNameWrpr = styled.div`
 export const RadiosWrpr = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-bottom: 20px;
+  gap: 1.25rem;
+  padding-bottom: 1.25rem;
 
   h3 {
     font-family: "Roboto Medium";
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1.3;
   }
 `;
@@ -69,13 +78,13 @@ export const SubmitBtn = styled.button`
   justify-content: center;
   align-items: center;
 
-  border-radius: 12px;
+  border-radius: 0.75rem;
   background-color: var(--accent-color);
-  padding: 16px;
+  padding: 1rem;
 
   color: var(--white-text);
   font-family: "Roboto Bold";
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.6;
 
   &:hover {

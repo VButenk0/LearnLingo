@@ -23,16 +23,32 @@ import {
   LogoutBtn,
   NavWrpr,
   RegisterBtn,
+  StyledBurger,
   StyledNavLink,
   UserAvatar,
   UserWrpr,
 } from "./Header.styled";
+import { useMediaQuery } from "react-responsive";
+import { Button, Menu, MenuItem } from "@mui/material";
+import { useState } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const modalIsOpen = useSelector(selectIsModalOpen);
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLogged);
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktop = useMediaQuery({ minWidth: 1440 });
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const onLogOutClick = () => {
     dispatch(changeModalOpen(true));
@@ -54,18 +70,63 @@ const Header = () => {
       <HeaderWrpr>
         <LogoWrpr to={"/"}>
           <img src={Logo} alt="Logo" />
-          <p>LearnLingo</p>
+          {isMobile ? <p>LL</p> : <p>LearnLingo</p>}
         </LogoWrpr>
-        <NavWrpr>
-          <StyledNavLink to="/">Home</StyledNavLink>
-          <StyledNavLink to="/teachers">Teachers</StyledNavLink>
-          {isLoggedIn && (
-            <StyledNavLink to="/favorites">Favorites</StyledNavLink>
-          )}
-        </NavWrpr>
+        {isDesktop ? (
+          <NavWrpr>
+            <StyledNavLink to="/">Home</StyledNavLink>
+            <StyledNavLink to="/teachers">Teachers</StyledNavLink>
+            {isLoggedIn && (
+              <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+            )}
+          </NavWrpr>
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <Button
+              id="burger"
+              aria-controls={anchorEl ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={anchorEl ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <StyledBurger className={anchorEl ? "open" : ""}>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </StyledBurger>
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <StyledNavLink to="/">Home</StyledNavLink>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <StyledNavLink to="/teachers">Teachers</StyledNavLink>
+              </MenuItem>
+              {isLoggedIn && (
+                <MenuItem onClick={handleClose}>
+                  <StyledNavLink to="/favorites">Favorites</StyledNavLink>
+                </MenuItem>
+              )}
+            </Menu>
+          </div>
+        )}
         {isLoggedIn ? (
           <UserWrpr>
-            <p>{user.username}</p>
+            {!isMobile && <p>{user.username}</p>}
             <UserAvatar
               src={user.avatar ? "*" : DefaultAvatar}
               alt="User Avatar"
@@ -84,7 +145,9 @@ const Header = () => {
               </svg>
               Log In
             </LogInBtn>
-            <RegisterBtn onClick={onRegisterClick}>Registration</RegisterBtn>
+            <RegisterBtn onClick={onRegisterClick}>
+              {isMobile ? "Sign Up" : "Registration"}
+            </RegisterBtn>
           </AuthWrpr>
         )}
       </HeaderWrpr>

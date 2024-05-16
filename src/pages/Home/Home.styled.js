@@ -8,6 +8,10 @@ export const MainWrp = styled.div`
   gap: 1.5rem;
 
   padding-bottom: 1.5rem;
+
+  @media only screen and (max-width: 1439px) {
+    gap: 0;
+  }
 `;
 
 export const WelcomeWrp = styled.div`
@@ -22,6 +26,15 @@ export const WelcomeWrp = styled.div`
   border-radius: 1.875rem;
   background-color: var(--second-bgclr);
   text-align: left;
+
+  @media only screen and (max-width: 1439px) {
+    width: 100%;
+    align-items: center;
+  }
+
+  @media only screen and (max-width: 400px) {
+    padding: 3rem 2rem;
+  }
 `;
 
 export const WelcomeTitle = styled.h1`
@@ -60,6 +73,7 @@ export const WelcomeButton = styled(Link)`
   background-color: var(--accent-color);
   border-radius: 0.75rem;
 
+  text-align: center;
   font-size: 1.125rem;
   font-family: "Roboto Bold";
 
@@ -68,6 +82,11 @@ export const WelcomeButton = styled(Link)`
   &:hover {
     color: var(--primary-text);
     background-color: var(--accent-hover);
+  }
+
+  @media only screen and (max-width: 767px) {
+    padding: 1rem 0;
+    width: 100%;
   }
 `;
 
@@ -111,13 +130,31 @@ export const TutorStatsWrp = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* gap: 6.25rem; */
 
   padding: 2.5rem 7.69rem;
+  margin-bottom: 3rem;
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='30' ry='30' stroke='%239B9AE0FF' stroke-width='1.5' stroke-dasharray='15%2c 15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
   background-position: center;
   border-radius: 1.875rem;
+
+  @media only screen and (max-width: 1439px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 3rem;
+    padding: 2.5rem 5rem;
+  }
+
+  @media only screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding: 2.5rem 2rem;
+  }
 `;
 
 export const OneStatWrp = styled.div`
@@ -136,8 +173,7 @@ export const StatNumber = styled.p`
 `;
 
 export const StatDescr = styled.p`
-  width: 6rem;
-
+  width: 5rem;
   color: var(--translucent-text);
   font-size: 0.875rem;
   line-height: 1.29;

@@ -11,6 +11,10 @@ export const TeachersPageWrpr = styled.div`
 export const SelectsWrpr = styled.div`
   display: flex;
   gap: 1.25rem;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const StyledLabel = styled(InputLabel)`
@@ -30,6 +34,10 @@ export const StyledSelect = styled(Select)`
 
   font-family: "Roboto Medium" !important;
   line-height: 1.1;
+
+  @media only screen and (max-width: 767px) {
+    width: 100% !important;
+  }
 `;
 
 export const StyledMenuItem = styled(MenuItem)`

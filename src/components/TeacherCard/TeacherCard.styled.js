@@ -2,11 +2,18 @@ import styled from "styled-components";
 
 export const TeacherCardWrpr = styled.div`
   display: flex;
+  position: relative;
+  min-width: 272px;
   gap: 3rem;
   padding: 1.5rem;
 
   border: 0.1875rem solid var(--border-color);
   border-radius: 1.875rem;
+
+  @media only screen and (max-width: 1439px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 `;
 
 export const ImgWrapper = styled.div`
@@ -29,6 +36,10 @@ export const ImgWrapper = styled.div`
     top: 1rem;
     right: 1.25rem;
   }
+
+  @media only screen and (max-width: 1439px) {
+    margin: 0 auto;
+  }
 `;
 
 export const TeacherPhoto = styled.img`
@@ -46,8 +57,18 @@ export const TopPart = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-`;
 
+  @media only screen and (max-width: 1439px) {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+`;
+export const NameWrpr = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 export const GrayText = styled.p`
   color: var(--gray-text);
   font-family: "Roboto Medium";
@@ -77,6 +98,10 @@ export const TeacherStatsWrpr = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media only screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const StatText = styled.p`
@@ -120,6 +145,12 @@ export const FavIcon = styled.svg`
   &:hover > use {
     box-shadow: 0.1875rem 0.1875rem 0.3125rem 0.3125rem var(--accent-bg);
   }
+
+  @media only screen and (max-width: 1439px) {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
 `;
 
 export const SeparatorIcon = styled.svg`
@@ -155,6 +186,7 @@ export const ReadMoreBtn = styled.button`
 
 export const LevelsWrpr = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 `;
@@ -167,6 +199,7 @@ export const LevelWrpr = styled.div`
   font-family: "Roboto Medium";
   font-size: 0.875rem;
   line-height: 1.4;
+  text-align: center;
 
   &.selected {
     color: var(--white-text);

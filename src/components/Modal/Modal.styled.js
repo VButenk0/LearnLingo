@@ -19,32 +19,47 @@ export const ModalContainer = styled.div`
 
 export const ModalStyled = styled.div`
   box-sizing: border-box;
-  width: 566px;
+  position: relative;
+  min-width: 272px;
+  max-width: 95%;
   height: auto;
   overflow-y: auto;
   max-height: 90vh;
   z-index: 2000;
-  border-radius: 30px;
+  border-radius: 1.875rem;
   background-color: var(--bcgclr);
-  padding: 64px;
+  padding: 4rem;
+
+  @media only screen and (max-width: 1439px) {
+    padding: 3rem;
+  }
+
+  @media only screen and (max-width: 767px) {
+    padding: 2rem;
+  }
 `;
 
 export const BtnClose = styled.button`
   background-color: transparent;
   position: absolute;
   border: none;
-  height: 24px;
   padding: 0;
-  top: 20px;
-  right: 20px;
+  top: 1.25rem;
+  right: 1.25rem;
   transition: scale 300ms ease-in-out;
 
   &:hover,
   &:focus {
     scale: 1.2;
   }
+
+  @media only screen and (max-width: 767px) {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
 `;
 
 export const SvgBtnClose = styled.svg`
+  height: 1.5rem;
   stroke: var(--primary-text);
 `;

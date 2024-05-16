@@ -3,9 +3,11 @@ import { LogOutModalWrpr, LogoutButtonsWrpr } from "./AuthModals.styled";
 import { logoutThunk } from "../../redux/auth/operations";
 import { closeModals } from "../../redux/modals/modalsSlice";
 import { toast } from "react-toastify";
+import { useMediaQuery } from "react-responsive";
 
 const LogoutModal = () => {
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const onCancelClick = () => {
     dispatch(closeModals());
@@ -22,7 +24,7 @@ const LogoutModal = () => {
       <h2>Log out</h2>
       <p>Do you really want to leave?</p>
       <LogoutButtonsWrpr>
-        <button onClick={onCancelClick}>Cancel</button>
+        {!isMobile && <button onClick={onCancelClick}>Cancel</button>}
         <button className="redBtn" onClick={onLogoutClick}>
           Log out
         </button>

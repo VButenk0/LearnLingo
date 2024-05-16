@@ -32,10 +32,12 @@ import {
   TeacherPhoto,
   TeacherStatsWrpr,
   TopPart,
+  NameWrpr,
 } from "./TeacherCard.styled";
 import { toggleFavoriteThunk } from "../../redux/auth/operations";
 import { selectFavorites, selectIsLogged } from "../../redux/selectors";
 import { toast } from "react-toastify";
+import { useMediaQuery } from "react-responsive";
 
 const TeacherCard = ({
   id,
@@ -57,6 +59,8 @@ const TeacherCard = ({
   const favorites = useSelector(selectFavorites);
   const isLogged = useSelector(selectIsLogged);
   const [isReadingMore, setIsReadingMore] = useState(false);
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   const onBookingClick = () => {
     dispatch(changeSelectedTeacher({ name, surname, avatar_url }));
@@ -87,10 +91,10 @@ const TeacherCard = ({
       </ImgWrapper>
       <InfoWrapper>
         <TopPart>
-          <div>
+          <NameWrpr>
             <GrayText>Languages</GrayText>
             <FullName>{name + " " + surname}</FullName>
-          </div>
+          </NameWrpr>
           <StatsHeartWrpr>
             <TeacherStatsWrpr>
               <IconStatWrpr>
@@ -99,22 +103,28 @@ const TeacherCard = ({
                 </BookIcon>
                 <StatText>Lessons online</StatText>
               </IconStatWrpr>
-              <SeparatorIcon width={2} height={16} fill="none">
-                <use href={sprite + "#icon-separator"}></use>
-              </SeparatorIcon>
+              {!isMobile && (
+                <SeparatorIcon width={2} height={16} fill="none">
+                  <use href={sprite + "#icon-separator"}></use>
+                </SeparatorIcon>
+              )}
               <StatText>Lessons done: {lessons_done}</StatText>
-              <SeparatorIcon width={2} height={16} fill="none">
-                <use href={sprite + "#icon-separator"}></use>
-              </SeparatorIcon>
+              {!isMobile && (
+                <SeparatorIcon width={2} height={16} fill="none">
+                  <use href={sprite + "#icon-separator"}></use>
+                </SeparatorIcon>
+              )}
               <IconStatWrpr>
                 <StarIcon width={16} height={16}>
                   <use href={sprite + "#icon-star"}></use>
                 </StarIcon>
                 <StatText>Rating: {rating}</StatText>
               </IconStatWrpr>
-              <SeparatorIcon width={2} height={16} fill="none">
-                <use href={sprite + "#icon-separator"}></use>
-              </SeparatorIcon>
+              {!isMobile && (
+                <SeparatorIcon width={2} height={16} fill="none">
+                  <use href={sprite + "#icon-separator"}></use>
+                </SeparatorIcon>
+              )}
               <StatText>
                 Price / 1 hour: <span>{price_per_hour}$</span>
               </StatText>

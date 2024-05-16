@@ -101,16 +101,16 @@ export const LogOutModalWrpr = styled.div`
 export const LogoutButtonsWrpr = styled.div`
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 1.4;
 
   button {
-    border-radius: 12px;
+    border-radius: 0.75rem;
     background-color: var(--accent-color);
-    padding: 16px 32px;
+    padding: 1rem 2rem;
 
     color: var(--white-text);
     font-family: "Roboto Bold";
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.6;
     transition: all 0.5s;
 
