@@ -1,5 +1,8 @@
+import { useDispatch } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { signInThunk } from "../../redux/auth/operations";
+import { closeModals } from "../../redux/modals/modalsSlice";
 import {
   FormStyled,
   InputStyled,
@@ -7,9 +10,6 @@ import {
   SubmitBtn,
   TitleWrapper,
 } from "./AuthModals.styled";
-import { useDispatch } from "react-redux";
-import { signInThunk } from "../../redux/auth/operations";
-import { closeModals } from "../../redux/modals/modalsSlice";
 
 const LoginModal = () => {
   const dispatch = useDispatch();

@@ -6,6 +6,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { selectIsLogged, selectSelectedTeacher } from "../../redux/selectors";
 import { closeModals } from "../../redux/modals/modalsSlice";
+import { signUpThunk } from "../../redux/auth/operations";
 import {
   FormStyled,
   InputStyled,
@@ -21,7 +22,6 @@ import {
   TeacherNameWrpr,
   TitleBooking,
 } from "./BookingModal.styled";
-import { signUpThunk } from "../../redux/auth/operations";
 
 const BookingModal = () => {
   const dispatch = useDispatch();

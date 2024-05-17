@@ -4,25 +4,22 @@ import styled from "styled-components";
 export const MainWrp = styled.div`
   display: flex;
   width: 100%;
-  /* height: fit-content; */
   gap: 1.5rem;
 
   padding-bottom: 1.5rem;
 
   @media only screen and (max-width: 1439px) {
-    gap: 0;
+    flex-direction: column;
+    height: 1030px;
   }
 `;
 
 export const WelcomeWrp = styled.div`
   display: flex;
   flex-direction: column;
-  /* flex-shrink: 0; */
-  /* box-sizing: border-box; */
 
   padding: 6.12rem 4rem;
   width: 55%;
-  /* height: 100%; */
   border-radius: 1.875rem;
   background-color: var(--second-bgclr);
   text-align: left;
@@ -30,16 +27,11 @@ export const WelcomeWrp = styled.div`
   @media only screen and (max-width: 1439px) {
     width: 100%;
     align-items: center;
-  }
-
-  @media only screen and (max-width: 400px) {
     padding: 3rem 2rem;
   }
 `;
 
 export const WelcomeTitle = styled.h1`
-  /* width: 100%; */
-
   font-family: "Roboto Medium";
   font-size: 3rem;
   line-height: 1.17;
@@ -56,10 +48,12 @@ export const WelcomeTitle = styled.h1`
 
     padding: 0 0.5rem;
   }
+  @media only screen and (max-width: 1439px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const WelcomeText = styled.p`
-  /* width: 100%; */
   line-height: 1.38;
   letter-spacing: -0.02rem;
   padding-bottom: 4rem;
@@ -94,15 +88,18 @@ export const ImgWrp = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  /* flex-shrink: 0; */
   align-items: center;
   overflow: hidden;
 
   width: 45%;
-  /* height: 100%; */
 
   border-radius: 1.875rem;
   background-color: var(--accent-bg);
+
+  @media only screen and (max-width: 1439px) {
+    width: auto;
+    height: 100%;
+  }
 `;
 
 export const GodImg = styled.img`

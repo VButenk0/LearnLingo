@@ -1,4 +1,7 @@
+import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { Button, Menu, MenuItem } from "@mui/material";
 import sprite from "../../assets/sprite.svg";
 import Logo from "../../images/ukraine.png";
 import DefaultAvatar from "../../images/defaultAvatar.jpg";
@@ -28,9 +31,6 @@ import {
   UserAvatar,
   UserWrpr,
 } from "./Header.styled";
-import { useMediaQuery } from "react-responsive";
-import { Button, Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();

@@ -13,6 +13,8 @@ import {
 import LogInModal from "../AuthModals/LogInModal";
 import RegistrModal from "../AuthModals/RegistrModal";
 import { closeModals } from "../../redux/modals/modalsSlice";
+import BookingModal from "../BookingModal/BookingModal";
+import LogoutModal from "../AuthModals/LogoutModal";
 import {
   BtnClose,
   ModalContainer,
@@ -20,8 +22,6 @@ import {
   Overlay,
   SvgBtnClose,
 } from "./Modal.styled";
-import BookingModal from "../BookingModal/BookingModal";
-import LogoutModal from "../AuthModals/LogoutModal";
 
 const Modal = () => {
   const dispatch = useDispatch();

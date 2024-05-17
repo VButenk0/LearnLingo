@@ -157,6 +157,7 @@ export const LogoutBtn = styled.button`
   align-items: center;
   padding: 0.3125rem;
   border-radius: 50%;
+  outline: none;
 
   transition: all 0.3s;
 

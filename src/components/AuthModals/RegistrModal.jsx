@@ -1,5 +1,8 @@
+import { useDispatch } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { signUpThunk } from "../../redux/auth/operations";
+import { closeModals } from "../../redux/modals/modalsSlice";
 import {
   FormStyled,
   InputStyled,
@@ -7,9 +10,6 @@ import {
   SubmitBtn,
   TitleWrapper,
 } from "./AuthModals.styled";
-import { useDispatch } from "react-redux";
-import { signUpThunk } from "../../redux/auth/operations";
-import { closeModals } from "../../redux/modals/modalsSlice";
 
 const RegistrModal = () => {
   const dispatch = useDispatch();

@@ -218,12 +218,6 @@ export const ReviewerWrpr = styled.div`
   display: flex;
   align-items: center;
   gap: 0.625rem;
-
-  /* img {
-    width: 2.75rem;
-    height: 2.75rem;
-    border-radius: 50%;
-  } */
 `;
 
 export const ReviewRate = styled.div`
@@ -254,5 +248,9 @@ export const BookingBtn = styled.button`
   &:hover {
     color: var(--primary-text);
     background-color: var(--accent-hover);
+  }
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+    padding: 1rem 0;
   }
 `;

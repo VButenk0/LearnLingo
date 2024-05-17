@@ -11,9 +11,12 @@ export const Global = createGlobalStyle`
   body {
     font-family: 'Roboto Regular', sans-serif;
     font-size: 16px;
+    min-width: 320px;
+    max-width: 1440px;
     min-height: 100vh;
     color: var(--primary-text);
     background-color: var(--bcgclr);
+    margin: 0 auto;
   }
 
   h1, h2, h3, h4, p {

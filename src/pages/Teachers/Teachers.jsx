@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import { FormControl } from "@mui/material";
 import Container from "../../components/Container/Container";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 import {
@@ -24,7 +25,6 @@ import {
   StyledSelect,
   TeachersPageWrpr,
 } from "./Teachers.styled";
-import { FormControl } from "@mui/material";
 
 const Teachers = () => {
   const dispatch = useDispatch();

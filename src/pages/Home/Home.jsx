@@ -1,4 +1,3 @@
-import { useMediaQuery } from "react-responsive";
 import Container from "../../components/Container/Container";
 import god from "../../images/Memoji Boys 2-7.png";
 import laptop from "../../images/Union.png";
@@ -18,7 +17,6 @@ import {
 } from "./Home.styled";
 
 const Home = () => {
-  const isDesktop = useMediaQuery({ minWidth: 1440 });
   return (
     <Container>
       <MainWrp>
@@ -33,14 +31,12 @@ const Home = () => {
           </WelcomeText>
           <WelcomeButton to={"/teachers"}>Get started</WelcomeButton>
         </WelcomeWrp>
-        {isDesktop && (
-          <ImgWrp>
-            <GodImg src={god} alt="God" />
-            <LaptopImg>
-              <img src={laptop} alt="Laptop" />
-            </LaptopImg>
-          </ImgWrp>
-        )}
+        <ImgWrp>
+          <GodImg src={god} alt="God" />
+          <LaptopImg>
+            <img src={laptop} alt="Laptop" />
+          </LaptopImg>
+        </ImgWrp>
       </MainWrp>
       <TutorStatsWrp>
         <OneStatWrp>

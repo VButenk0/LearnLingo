@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import { useMediaQuery } from "react-responsive";
 import sprite from "../../assets/sprite.svg";
 import { changeSelectedTeacher } from "../../redux/data/dataSlice";
 import {
   changeBookingModal,
   changeModalOpen,
 } from "../../redux/modals/modalsSlice";
+import { toggleFavoriteThunk } from "../../redux/auth/operations";
+import { selectFavorites, selectIsLogged } from "../../redux/selectors";
 import {
   BookIcon,
   BookingBtn,
@@ -34,10 +38,6 @@ import {
   TopPart,
   NameWrpr,
 } from "./TeacherCard.styled";
-import { toggleFavoriteThunk } from "../../redux/auth/operations";
-import { selectFavorites, selectIsLogged } from "../../redux/selectors";
-import { toast } from "react-toastify";
-import { useMediaQuery } from "react-responsive";
 
 const TeacherCard = ({
   id,
@@ -193,8 +193,6 @@ const TeacherCard = ({
             {reviews.map(({ reviewer_name, reviewer_rating, comment }) => (
               <div key={nanoid()}>
                 <ReviewerWrpr>
-                  {/* <img src="" alt={reviewer_name}'s Avatar /> */}
-                  {/* <div> */}
                   <GrayText className="review">{reviewer_name}</GrayText>
                   <ReviewRate>
                     <StarIcon width={16} height={16}>
@@ -202,7 +200,6 @@ const TeacherCard = ({
                     </StarIcon>
                     <p>{reviewer_rating}.0</p>
                   </ReviewRate>
-                  {/* </div> */}
                 </ReviewerWrpr>
                 <ReviewComment>{comment}</ReviewComment>
               </div>

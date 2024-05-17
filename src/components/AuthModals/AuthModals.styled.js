@@ -98,34 +98,21 @@ export const LogOutModalWrpr = styled.div`
   }
 `;
 
-export const LogoutButtonsWrpr = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.4;
+export const LogoutButtonsWrpr = styled.button`
+  border-radius: 0.75rem;
+  background-color: var(--logout-btn);
+  padding: 1rem 2rem;
+  outline: none;
+  width: 100%;
 
-  button {
-    border-radius: 0.75rem;
-    background-color: var(--accent-color);
-    padding: 1rem 2rem;
+  color: var(--white-text);
+  font-family: "Roboto Bold";
+  font-size: 1.125rem;
+  line-height: 1.6;
+  transition: all 0.5s;
 
+  &:hover {
     color: var(--white-text);
-    font-family: "Roboto Bold";
-    font-size: 1.125rem;
-    line-height: 1.6;
-    transition: all 0.5s;
-
-    &:hover {
-      color: var(--primary-text);
-      background-color: var(--accent-hover);
-    }
-
-    &.redBtn {
-      background-color: var(--logout-btn);
-
-      &:hover {
-        color: var(--white-text);
-        background-color: var(--logout-btn-hover);
-      }
-    }
+    background-color: var(--logout-btn-hover);
   }
 `;
