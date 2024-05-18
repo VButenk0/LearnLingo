@@ -8,6 +8,7 @@ import {
 import { auth, database } from "../../firebase.config";
 import { get, ref, update } from "firebase/database";
 import { toast } from "react-toastify";
+import { closeModals } from "../modals/modalsSlice";
 
 export const API_KEY = "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw";
 
@@ -68,6 +69,8 @@ export const signInThunk = createAsyncThunk(
 
       toast.info("Log in successful!");
 
+      thunkApi.dispatch(closeModals());
+
       return {
         token: user.idToken,
         email: user.email,
@@ -75,8 +78,8 @@ export const signInThunk = createAsyncThunk(
         favorites: user.favorites,
       };
     } catch (error) {
-      toast.error(error.message);
-      return thunkApi.rejectWithValue(error.message);
+      toast.error("No user found for this email/password");
+      throw error;
     }
   }
 );

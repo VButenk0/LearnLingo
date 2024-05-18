@@ -56,54 +56,31 @@ const RegistrModal = () => {
                 id="username"
                 name="username"
                 label="Name"
+                error={
+                  formik.touched.username && Boolean(formik.errors.username)
+                }
+                helperText={formik.touched.username && formik.errors.username}
               />
-              <ErrorMessage name="username">
-                {(msg) => (
-                  <div
-                    style={{
-                      color: "red",
-                      position: "absolute",
-                      right: "10px",
-                    }}
-                  >
-                    {msg}
-                  </div>
-                )}
-              </ErrorMessage>
-              <Field as={InputStyled} id="email" name="email" label="Email" />
-              <ErrorMessage name="email">
-                {(msg) => (
-                  <div
-                    style={{
-                      color: "red",
-                      position: "absolute",
-                      right: "10px",
-                    }}
-                  >
-                    {msg}
-                  </div>
-                )}
-              </ErrorMessage>
+              <Field
+                as={InputStyled}
+                id="email"
+                name="email"
+                label="Email"
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+              />
+
               <Field
                 as={InputStyled}
                 id="password"
                 name="password"
                 label="Password"
                 type="password"
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
               />
-              <ErrorMessage name="password">
-                {(msg) => (
-                  <div
-                    style={{
-                      color: "red",
-                      position: "absolute",
-                      right: "10px",
-                    }}
-                  >
-                    {msg}
-                  </div>
-                )}
-              </ErrorMessage>
             </InputsWrpr>
             <SubmitBtn type="submit" disabled={formik.isSubmitting}>
               Sign Up
