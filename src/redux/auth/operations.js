@@ -5,7 +5,7 @@ import {
   onIdTokenChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth, database } from "../../../firebase.config";
+import { auth, database } from "../../firebase.config";
 import { get, ref, update } from "firebase/database";
 import { toast } from "react-toastify";
 

@@ -196,9 +196,10 @@ const Teachers = () => {
               </NoSuchTeachers>
             )}
           </CardsWrapper>
-          {filteredTeachers.length >= allTeachers.length && (
-            <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
-          )}
+          {teachers.length < allTeachers.length &&
+            filteredTeachers.length >= allTeachers.length && (
+              <LoadMoreBtn onClick={onLoadMoreClick}>Load more</LoadMoreBtn>
+            )}
         </TeachersPageWrpr>
       )}
     </Container>

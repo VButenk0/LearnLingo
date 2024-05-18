@@ -3,15 +3,14 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref, update } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDj9oAbVaOiQF17KQCrYeWmLjKYsNJQ2Nw",
-  authDomain: "learnlingo-24a8d.firebaseapp.com",
-  databaseURL:
-    "https://learnlingo-24a8d-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "learnlingo-24a8d",
-  storageBucket: "learnlingo-24a8d.appspot.com",
-  messagingSenderId: "136681429187",
-  appId: "1:136681429187:web:c918e0393aa0c4d2442a76",
-  measurementId: "G-0SKH73JXDX",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_DATABASE_URL,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { database } from "../../../firebase.config";
+import { database } from "../../firebase.config";
 import {
   get,
   limitToFirst,
